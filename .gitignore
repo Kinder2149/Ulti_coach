@@ -1,0 +1,7 @@
+# On ne publie QUE le site (docs/) et le README.
+# Tout le reste à la racine est exclu par défaut — y compris les documents
+# nominatifs (GONES 2026, scans de séances) et les notes de travail internes.
+/*
+!/.gitignore
+!/README.md
+!/docs/

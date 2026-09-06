@@ -1,0 +1,710 @@
+<title>Diaporama de l'atelier coachs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F6F7F5;
+  --surface:#FFFFFF;
+  --ink:#141A1F;
+  --ink-soft:#4E5A62;
+  --ink-faint:#8A949B;
+  --rule:#DCE0DC;
+  --accent:#1B3A8F;
+  --accent-ink:#E9EEFA;
+  --marker:#C9541A;
+  --marker-bg:#FBEBE0;
+  --plot-warm:#B57A0B;
+  --plot-warm-bg:#FAF0D9;
+  --plot-blue:#1F5D9E;
+  --plot-blue-bg:#E4EFF9;
+  --plot-violet:#5F3F94;
+  --plot-violet-bg:#EDE7F8;
+  --plot-green:#26694A;
+  --plot-green-bg:#E0F0E7;
+  --plot-red:#A9342A;
+  --plot-red-bg:#FAE5E2;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1317; --surface:#161C22;
+    --ink:#EBEDEA; --ink-soft:#A6B0B8; --ink-faint:#78838B;
+    --rule:#28313A;
+    --accent:#8FADEE; --accent-ink:#0E1626;
+    --marker:#F08B51; --marker-bg:#2C1A10;
+    --plot-warm:#E0B44E; --plot-warm-bg:#2A2212;
+    --plot-blue:#6BA6E0; --plot-blue-bg:#112334;
+    --plot-violet:#A98BE0; --plot-violet-bg:#201832;
+    --plot-green:#63BE93; --plot-green-bg:#11251C;
+    --plot-red:#E4796C; --plot-red-bg:#2C1513;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1317; --surface:#161C22;
+  --ink:#EBEDEA; --ink-soft:#A6B0B8; --ink-faint:#78838B;
+  --rule:#28313A;
+  --accent:#8FADEE; --accent-ink:#0E1626;
+  --marker:#F08B51; --marker-bg:#2C1A10;
+  --plot-warm:#E0B44E; --plot-warm-bg:#2A2212;
+  --plot-blue:#6BA6E0; --plot-blue-bg:#112334;
+  --plot-violet:#A98BE0; --plot-violet-bg:#201832;
+  --plot-green:#63BE93; --plot-green-bg:#11251C;
+  --plot-red:#E4796C; --plot-red-bg:#2C1513;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Archivo",system-ui,sans-serif;overflow:hidden;
+}
+
+.deck{position:relative;height:100vh;width:100%}
+.slide{
+  position:absolute;inset:0;display:none;
+  padding:clamp(28px,5vw,72px) clamp(24px,6vw,96px) clamp(60px,7vw,88px);
+  flex-direction:column;justify-content:center;
+  background:var(--paper);
+}
+.slide.on{display:flex}
+@media (prefers-reduced-motion:no-preference){
+  .slide.on{animation:fade .22s ease-out}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+}
+.inner{width:100%;max-width:1180px;margin:0 auto}
+
+.tag{
+  font-size:clamp(.7rem,1.2vw,.86rem);font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--marker);margin:0 0 clamp(14px,2vw,26px);
+}
+h1{
+  font-size:clamp(2.6rem,7.4vw,6rem);font-weight:900;line-height:.96;
+  letter-spacing:-.035em;margin:0;text-wrap:balance;
+}
+h2{
+  font-size:clamp(2rem,5.4vw,4.2rem);font-weight:800;line-height:1.02;
+  letter-spacing:-.03em;margin:0 0 clamp(16px,2.4vw,34px);text-wrap:balance;
+}
+h3{
+  font-size:clamp(1.1rem,2vw,1.65rem);font-weight:700;line-height:1.2;
+  letter-spacing:-.015em;margin:0 0 14px;
+}
+p.sub{
+  font-family:"Newsreader",Georgia,serif;
+  font-size:clamp(1.05rem,2.1vw,1.7rem);line-height:1.45;color:var(--ink-soft);
+  margin:clamp(14px,2vw,26px) 0 0;max-width:34ch;
+}
+ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:clamp(10px,1.6vw,20px)}
+li{
+  font-size:clamp(1.05rem,2.2vw,1.85rem);line-height:1.3;font-weight:500;
+  padding-left:clamp(20px,2.4vw,34px);position:relative;text-wrap:balance;
+}
+li::before{
+  content:"";position:absolute;left:0;top:.55em;
+  width:clamp(9px,1vw,13px);height:2px;background:var(--marker);
+}
+li b{font-weight:800}
+em{font-style:normal;color:var(--accent)}
+
+/* ---- section divider ---- */
+.slide.sec{background:var(--ink)}
+.slide.sec h1,.slide.sec h2{color:var(--paper)}
+.slide.sec .tag{color:var(--marker)}
+.slide.sec p.sub{color:#9AA6AE}
+.slide.sec .num{
+  font-family:"IBM Plex Mono",monospace;font-size:clamp(3rem,9vw,7rem);
+  font-weight:600;color:#33404A;line-height:1;margin:0 0 clamp(10px,1.6vw,22px);
+}
+
+/* ---- statement ---- */
+.slide.say{background:var(--accent)}
+.slide.say h1{color:#fff;font-size:clamp(2.2rem,6.2vw,5rem)}
+.slide.say .tag{color:#B9CBF2}
+.slide.say p.sub{color:#CFDBF5;max-width:44ch}
+
+/* ---- atelier ---- */
+.slide.lab{background:var(--marker-bg)}
+.slide.lab .tag{color:var(--marker)}
+.slide.lab h2{color:var(--ink)}
+.slide.lab .quote{
+  font-size:clamp(1.5rem,4vw,3.1rem);font-weight:800;line-height:1.14;
+  letter-spacing:-.025em;margin:0;text-wrap:balance;
+}
+.slide.lab .mins{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:clamp(.9rem,1.5vw,1.15rem);color:var(--marker);
+  margin-top:clamp(18px,2.4vw,32px);
+}
+
+/* ---- pause ---- */
+.slide.pause{background:var(--surface)}
+.slide.pause h1{color:var(--ink-faint)}
+
+/* ---- trame ---- */
+.trame{display:flex;flex-direction:column;gap:clamp(6px,.9vw,11px)}
+.tb{
+  background:var(--surface);border:1px solid var(--rule);border-left-width:6px;
+  border-radius:5px;padding:clamp(9px,1.4vw,16px) clamp(12px,1.8vw,22px);
+}
+.tb strong{
+  display:block;font-size:clamp(.95rem,1.8vw,1.35rem);font-weight:800;letter-spacing:-.01em;
+}
+.tb span{
+  display:block;font-family:"Newsreader",serif;
+  font-size:clamp(.85rem,1.45vw,1.08rem);color:var(--ink-soft);margin-top:2px;
+}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(6px,.9vw,11px)}
+.b-mark{border-left-color:var(--marker)}
+.b-warm{border-left-color:var(--plot-warm)}
+.b-blue{border-left-color:var(--plot-blue)}
+.b-green{border-left-color:var(--plot-green)}
+
+/* ---- fiche 6 cases ---- */
+.fiche{border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--surface)}
+.fr{display:grid;border-bottom:1.5px solid var(--rule)}
+.fr:last-child{border-bottom:0}
+.f3{grid-template-columns:repeat(3,1fr)}
+.f2{grid-template-columns:1fr 1fr}
+.f1{grid-template-columns:1fr}
+.fc{padding:clamp(10px,1.5vw,20px);border-right:1.5px solid var(--rule)}
+.fc:last-child{border-right:0}
+.fc b{
+  display:inline-block;font-size:clamp(.62rem,1vw,.78rem);font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px;
+}
+.fc span{
+  display:block;font-family:"Newsreader",serif;
+  font-size:clamp(.82rem,1.35vw,1.02rem);color:var(--ink-soft);margin-top:7px;line-height:1.35;
+}
+.x-ink b{background:var(--rule);color:var(--ink-soft)}
+.x-blue b{background:var(--plot-blue-bg);color:var(--plot-blue)}
+.x-violet b{background:var(--plot-violet-bg);color:var(--plot-violet)}
+.x-green b{background:var(--plot-green-bg);color:var(--plot-green)}
+.x-red b{background:var(--plot-red-bg);color:var(--plot-red)}
+
+/* ---- steps ---- */
+.steps{display:flex;flex-wrap:wrap;gap:clamp(7px,1.1vw,13px);align-items:center}
+.st{
+  background:var(--surface);border:1.5px solid var(--rule);border-radius:999px;
+  padding:clamp(8px,1.1vw,14px) clamp(14px,1.9vw,26px);
+  font-size:clamp(.9rem,1.6vw,1.3rem);font-weight:700;
+}
+.st i{
+  font-style:normal;font-family:"IBM Plex Mono",monospace;
+  color:var(--ink-faint);margin-right:9px;font-size:.85em;
+}
+.arw{color:var(--ink-faint);font-size:clamp(.9rem,1.5vw,1.2rem)}
+
+/* ---- table ---- */
+table{border-collapse:collapse;width:100%;font-size:clamp(.85rem,1.6vw,1.25rem)}
+th,td{padding:clamp(6px,1vw,13px) clamp(8px,1.2vw,18px);text-align:left;border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+th{
+  font-size:clamp(.62rem,1vw,.78rem);font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-faint);
+}
+td.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.tbl{background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+
+/* ---- cue ---- */
+.cue{
+  font-size:clamp(1.7rem,5.6vw,4.6rem);font-weight:900;line-height:1.06;
+  letter-spacing:-.035em;color:#fff;margin:0;text-wrap:balance;
+}
+.cuegrid{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(6px,.9vw,12px) clamp(16px,2.6vw,40px);
+  margin-top:clamp(16px,2.4vw,32px);
+}
+.cuegrid dt{
+  font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:clamp(.85rem,1.6vw,1.25rem);color:var(--marker);white-space:nowrap;
+}
+.cuegrid dd{
+  margin:0;font-family:"Newsreader",serif;
+  font-size:clamp(.88rem,1.6vw,1.25rem);color:var(--ink-soft);line-height:1.35;
+}
+
+/* ---- chrome ---- */
+.chrome{
+  position:fixed;left:0;right:0;bottom:0;height:clamp(38px,4.4vw,52px);
+  display:flex;align-items:center;gap:14px;
+  padding:0 clamp(16px,3vw,34px);
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-faint);
+  pointer-events:none;z-index:5;
+}
+.chrome .blk{flex:1;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chrome .cnt{font-variant-numeric:tabular-nums}
+.bar{
+  position:fixed;left:0;bottom:0;height:3px;background:var(--marker);
+  transition:width .2s ease-out;z-index:6;
+}
+.slide.sec ~ .chrome,.slide.say ~ .chrome{color:#7C8B99}
+.hint{
+  position:fixed;top:clamp(12px,2vw,20px);right:clamp(14px,3vw,30px);
+  font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-faint);
+  opacity:.65;z-index:5;pointer-events:none;
+}
+.siteback{
+  position:fixed;top:10px;left:12px;z-index:50;
+  font-family:"Archivo",system-ui,sans-serif;font-size:.72rem;font-weight:700;
+  color:var(--ink-faint);text-decoration:none;
+  background:color-mix(in srgb,var(--paper) 78%,transparent);
+  padding:5px 10px;border-radius:6px;border:1px solid var(--rule);opacity:.55;
+}
+.siteback:hover{opacity:1;color:var(--accent)}
+</style>
+
+<a class="siteback" href="index.html" aria-label="Retour à l'accueil">← Accueil</a>
+
+<div class="deck" id="deck">
+
+  <section class="slide sec on" data-blk="Ouverture">
+    <div class="inner">
+      <p class="tag">Formation des entraîneurs</p>
+      <h1>Construire<br>une séance</h1>
+      <p class="sub">Trois heures. À la fin, votre séance de mardi est écrite.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="Ouverture">
+    <div class="inner">
+      <p class="tag">Le programme</p>
+      <div class="trame">
+        <div class="tb b-mark"><strong>Une année a une forme</strong><span>Vous ne partez pas de zéro chaque semaine</span></div>
+        <div class="tb b-warm"><strong>Une séance a une forme</strong><span>La trame, et les mots</span></div>
+        <div class="tb b-blue"><strong>Un exercice a une forme</strong><span>Objectif, critère de réussite, variables</span></div>
+        <div class="tb b-blue"><strong>Le terrain</strong><span>Des niveaux qui s'écartent, un effectif inconnu</span></div>
+        <div class="tb b-green"><strong>Le cut, décortiqué</strong><span>Un geste entier, pour savoir en décomposer d'autres</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOC 1 ============ -->
+  <section class="slide sec" data-blk="1 · L'année">
+    <div class="inner">
+      <p class="num">01</p>
+      <h1>Une année<br>a une forme</h1>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="1 · L'année">
+    <div class="inner">
+      <h1>Vous n'avez pas à choisir quoi travailler.</h1>
+      <p class="sub">C'est décidé pour l'année, et c'est le même thème pour tout le club.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="1 · L'année">
+    <div class="inner">
+      <p class="tag">Le fil rouge</p>
+      <div class="tbl">
+        <table>
+          <tr><td class="mono">Sept.</td><td><b>Le cut</b></td><td class="mono">Janv.</td><td>Défense de zone</td></tr>
+          <tr><td class="mono">Oct.</td><td>Continuité</td><td class="mono">Févr.</td><td>Techniques d'attaque</td></tr>
+          <tr><td class="mono">Nov.</td><td>Défense — les bases</td><td class="mono">Mars</td><td>Défense individuelle&nbsp;+</td></tr>
+          <tr><td class="mono">Déc.</td><td>Passer devant</td><td class="mono">Avril</td><td>Défense de zone&nbsp;+</td></tr>
+          <tr><td class="mono"></td><td></td><td class="mono">Mai</td><td>Attaque collective&nbsp;+</td></tr>
+          <tr><td class="mono"></td><td></td><td class="mono">Juin</td><td>Travail d'équipe</td></tr>
+        </table>
+      </div>
+      <p class="sub">Ce qui change d'un groupe à l'autre, ce n'est pas le thème — c'est jusqu'où on pousse le détail.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="1 · L'année">
+    <div class="inner">
+      <h2>Les quatre règles</h2>
+      <ul>
+        <li><b>L'individuel avant le collectif</b> — le cut avant la continuité</li>
+        <li><b>On alterne</b> attaque et défense</li>
+        <li><b>On progresse en spirale</b>, pas en liste</li>
+        <li><b>Juin, on consolide</b> — pas de contenu neuf</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="1 · L'année">
+    <div class="inner">
+      <h1>On ne finit jamais un thème.<br>On y revient.</h1>
+      <p class="sub">Un thème traité n'est pas un thème acquis. C'est l'erreur la plus fréquente quand on débute.</p>
+    </div>
+  </section>
+
+  <!-- ============ BLOC 2 ============ -->
+  <section class="slide sec" data-blk="2 · La séance">
+    <div class="inner">
+      <p class="num">02</p>
+      <h1>Une séance<br>a une forme</h1>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="2 · La séance">
+    <div class="inner">
+      <p class="tag">La trame — toujours la même</p>
+      <div class="trame">
+        <div class="duo">
+          <div class="tb b-mark"><strong>Thème</strong><span>La phase du mois</span></div>
+          <div class="tb b-warm"><strong>Lexique</strong><span>3 ou 4 mots</span></div>
+        </div>
+        <div class="tb b-warm"><strong>Échauffement</strong><span>Gamme de passe · physique · un jeu</span></div>
+        <div class="duo">
+          <div class="tb b-blue"><strong>Exercice 1</strong><span>Objectif · CR · variables</span></div>
+          <div class="tb b-blue"><strong>Exercice 2</strong><span>Objectif · CR · variables</span></div>
+        </div>
+        <div class="tb b-green"><strong>Match à thème</strong><span>Une contrainte, un barème</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="2 · La séance">
+    <div class="inner">
+      <h1>Le lexique s'écrit avant la séance.<br>Pas pendant.</h1>
+      <p class="sub">Trois mots décidés à l'avance valent mieux que vingt improvisés au bord du terrain.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="2 · La séance">
+    <div class="inner">
+      <h2>Un seul détail<br>par séance</h2>
+      <p class="sub">Une séance ne traite pas un thème. Elle traite un détail d'une phase d'un thème.</p>
+      <p class="sub"><em>Si vous ne pouvez pas la résumer en une phrase, elle en contient trop.</em></p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="2 · La séance">
+    <div class="inner">
+      <h2>Réutilisez le même exercice</h2>
+      <ul>
+        <li>Vous allez vouloir <b>varier pour ne pas ennuyer</b>. C'est l'inverse.</li>
+        <li>Un exercice connu, c'est <b>toute leur attention libérée</b> pour le détail travaillé</li>
+        <li>Un exercice neuf coûte <b>dix minutes d'explication</b> et disperse tout le monde</li>
+        <li>La Flèche, le Sapin, l'Arbre sortent <b>des dizaines de fois</b> dans l'année</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide lab" data-blk="2 · La séance">
+    <div class="inner">
+      <p class="tag">À vous</p>
+      <p class="quote">Choisissez la phase du cut que vous travaillerez mardi. Écrivez le thème, et les trois mots que vous emploierez.</p>
+      <p class="mins">15 minutes · rien d'autre pour l'instant</p>
+    </div>
+  </section>
+
+  <!-- ============ BLOC 3 ============ -->
+  <section class="slide sec" data-blk="3 · L'exercice">
+    <div class="inner">
+      <p class="num">03</p>
+      <h1>Un exercice<br>a une forme</h1>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="3 · L'exercice">
+    <div class="inner">
+      <p class="tag">La fiche exercice</p>
+      <div class="fiche">
+        <div class="fr f3">
+          <div class="fc x-ink"><b>Nb joueurs</b></div>
+          <div class="fc x-ink"><b>Matériel</b></div>
+          <div class="fc x-ink"><b>Durée</b></div>
+        </div>
+        <div class="fr f2">
+          <div class="fc x-blue"><b>Objectif</b><span>Une phrase</span></div>
+          <div class="fc x-blue"><b>Critère de réussite</b><span>Vérifiable sans vous</span></div>
+        </div>
+        <div class="fr f1">
+          <div class="fc x-violet"><b>Déroulement</b><span>Qui se place où, qui part quand, ce qui déclenche</span></div>
+        </div>
+        <div class="fr f2">
+          <div class="fc x-green"><b>Variable (+)</b><span>Pour ceux qui ont compris</span></div>
+          <div class="fc x-red"><b>Variable (−)</b><span>Pour ceux qui ont besoin de temps</span></div>
+        </div>
+      </div>
+      <p class="sub">Si une case est vide, l'exercice n'est pas prêt.</p>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="3 · L'exercice">
+    <div class="inner">
+      <h1>Un critère de réussite, c'est ce que le joueur vérifie lui-même. Sans vous.</h1>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="3 · L'exercice">
+    <div class="inner">
+      <h2>Trois formes qui marchent</h2>
+      <ul>
+        <li><b>Observable</b> — « le départ se fait quand la passe précédente est lâchée »</li>
+        <li><b>Chiffré</b> — un barème qui récompense ce qu'on travaille</li>
+        <li><b>Temporel</b> — le compte à 10 découpé : 1→5 le milieu, 5→7 l'ouvert, 6→10 le soutien</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="3 · L'exercice">
+    <div class="inner">
+      <p class="tag">Le score enseigne à votre place</p>
+      <div class="tbl">
+        <table>
+          <tr><th>Barème</th><th>Ce qu'il installe</th></tr>
+          <tr><td class="mono">0 turn = 3 pts · 1 = 2 · 2 = 0 · 3+ = 2 à l'adverse</td><td>Soigner la conservation</td></tr>
+          <tr><td class="mono">Fermé = 2 pts · ouvert = 1 pt · turn = −2</td><td>Oser le côté difficile</td></tr>
+          <tr><td class="mono">Dissuade = 1 pt · intercepte = 2 pts</td><td>Défendre, pas subir</td></tr>
+        </table>
+      </div>
+      <p class="sub">Vous ne répétez plus « ne perdez pas le disque ». Le barème le dit pour vous.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="3 · L'exercice">
+    <div class="inner">
+      <h2>Faire vivre l'exercice</h2>
+      <div class="steps">
+        <span class="st"><i>1</i>Pas de consigne</span><span class="arw">→</span>
+        <span class="st"><i>2</i>Une consigne</span><span class="arw">→</span>
+        <span class="st"><i>3</i>Avec défense</span><span class="arw">→</span>
+        <span class="st"><i>4</i>En compétition</span>
+      </div>
+      <p class="sub">Et souvent, en amont : <em>sans disque d'abord</em>. Avec ces quatre paliers, un seul exercice tient trente minutes.</p>
+    </div>
+  </section>
+
+  <section class="slide lab" data-blk="3 · L'exercice">
+    <div class="inner">
+      <p class="tag">À vous</p>
+      <p class="quote">Prenez un exercice que vous connaissez déjà — et qu'ils connaissent. Remplissez la fiche en entier.</p>
+      <p class="mins">20 minutes · pas d'exercice neuf</p>
+    </div>
+  </section>
+
+  <!-- ============ PAUSE ============ -->
+  <section class="slide pause" data-blk="Pause">
+    <div class="inner" style="text-align:center">
+      <h1>Pause</h1>
+      <p class="sub" style="margin-left:auto;margin-right:auto;text-align:center">15 minutes</p>
+    </div>
+  </section>
+
+  <!-- ============ BLOC 4 ============ -->
+  <section class="slide sec" data-blk="4 · Le terrain">
+    <div class="inner">
+      <p class="num">04</p>
+      <h1>Le terrain</h1>
+      <p class="sub">Douze joueurs de six niveaux différents, et vous ne le saviez pas en arrivant.</p>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="4 · Le terrain">
+    <div class="inner">
+      <h1>On ne sépare pas le groupe.</h1>
+      <p class="sub">On règle l'exigence avec la variable + et la variable −. Sur le même exercice, en même temps, sans rien annoncer.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="4 · Le terrain">
+    <div class="inner">
+      <p class="tag">Les sept leviers</p>
+      <div class="tbl">
+        <table>
+          <tr><th>Levier</th><th>Variable (−)</th><th>Variable (+)</th></tr>
+          <tr><td><b>Espace</b></td><td>Agrandir la zone</td><td>La réduire</td></tr>
+          <tr><td><b>Temps</b></td><td>Un temps d'arrêt avant de lancer</td><td>Diminuer le compte</td></tr>
+          <tr><td><b>Repères</b></td><td>Garder les plots</td><td>Les enlever</td></tr>
+          <tr><td><b>Défense</b></td><td>Sans, puis passive</td><td>Active, puis doublée</td></tr>
+          <tr><td><b>Départ</b></td><td>Face au jeu</td><td>De dos</td></tr>
+          <tr><td><b>Technique</b></td><td>Un seul lancer</td><td>Le côté difficile</td></tr>
+          <tr><td><b>Enchaînement</b></td><td>Une entrée</td><td>Deux, ou la longue à la fin</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="4 · Le terrain">
+    <div class="inner">
+      <h2>Adapter,<br>c'est le métier</h2>
+      <p class="sub">Vous ne saurez jamais combien ils sont avant d'arriver. Vous ne préparez pas une séance calibrée — vous préparez un contenu <em>que vous savez découper</em>.</p>
+      <ul style="margin-top:clamp(18px,2.4vw,32px)">
+        <li>Assez de <b>temps de jeu</b> pour que ça serve</li>
+        <li>Assez de <b>repos</b> si l'intensité le demande</li>
+        <li>Mais <b>jamais assez d'attente</b> pour qu'ils s'ennuient — ou se refroidissent</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="4 · Le terrain">
+    <div class="inner">
+      <h1>Toujours avoir plein de plots.</h1>
+      <p class="sub">Un plot de plus, c'est une file d'attente en moins.</p>
+    </div>
+  </section>
+
+  <section class="slide lab" data-blk="4 · Le terrain">
+    <div class="inner">
+      <p class="tag">À vous</p>
+      <p class="quote">Ajoutez une variable + et une variable − à votre fiche. Une seule de chaque — mais qui sert votre objectif.</p>
+      <p class="mins">10 minutes</p>
+    </div>
+  </section>
+
+  <!-- ============ BLOC 5 ============ -->
+  <section class="slide sec" data-blk="5 · Le cut">
+    <div class="inner">
+      <p class="num">05</p>
+      <h1>Le cut,<br>décortiqué</h1>
+      <p class="sub">Un geste entier, une fois. Pour savoir en décomposer un autre.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="5 · Le cut">
+    <div class="inner">
+      <p class="tag">Sept temps</p>
+      <div class="steps">
+        <span class="st"><i>0</i>Le stack</span><span class="arw">→</span>
+        <span class="st"><i>1</i>Je regarde</span><span class="arw">→</span>
+        <span class="st"><i>2</i>Cut 1</span><span class="arw">→</span>
+        <span class="st"><i>3</i>Changement de direction</span><span class="arw">→</span>
+        <span class="st"><i>4</i>Cut 2</span><span class="arw">→</span>
+        <span class="st"><i>5</i>Zone de réception</span><span class="arw">→</span>
+        <span class="st"><i>6</i>Recyclage</span>
+      </div>
+      <p class="sub">Le club a passé <em>six séances</em> sur ce seul geste. Ce n'est pas trop : c'est ce qu'il faut.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="5 · Le cut">
+    <div class="inner">
+      <p class="tag">La grille qui sert à découper n'importe quoi</p>
+      <h2 style="margin-bottom:clamp(20px,2.6vw,36px)">P · P · A</h2>
+      <ul>
+        <li><b>Prise d'information</b> — qu'est-ce que je regarde&nbsp;?</li>
+        <li><b>Prise de décision</b> — qu'est-ce que je choisis&nbsp;?</li>
+        <li><b>Action</b> — j'exécute</li>
+      </ul>
+      <p class="sub">Ce qu'on décompose, ce n'est pas le geste. C'est <em>la boucle de décision</em>.</p>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="5 · Le cut">
+    <div class="inner">
+      <h1>Le cut 1 ne sert pas à recevoir le disque.<br>Il sert à déséquilibrer la défense.</h1>
+      <p class="sub">Un joueur déçu de ne pas recevoir sur son cut 1 fait des cuts 1 mous. Et un cut 1 mou ne déséquilibre personne.</p>
+    </div>
+  </section>
+
+  <section class="slide say" data-blk="5 · Le cut">
+    <div class="inner">
+      <p class="tag">Tous ensemble, à voix haute</p>
+      <p class="cue">« J'arrive, petit pas, je plante, je tourne et pousse&nbsp;! »</p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="5 · Le cut">
+    <div class="inner">
+      <p class="tag">Mot par mot</p>
+      <dl class="cuegrid">
+        <dt>J'arrive</dt><dd>Je baisse mon centre de gravité en approchant du point de rupture</dd>
+        <dt>Petit pas</dt><dd>Je raccourcis ma foulée pour pouvoir m'ancrer</dd>
+        <dt>Je plante</dt><dd>J'ancre les deux appuis — dos droit</dd>
+        <dt>Je tourne</dt><dd>Le pied intérieur pivote, la hanche entraîne le corps, les bras suivent</dd>
+        <dt>et pousse&nbsp;!</dt><dd>Je propulse le corps entier avec le pied intérieur</dd>
+      </dl>
+      <p class="sub">Rythmé · à la première personne · une action par mot · <em>criable depuis le bord du terrain</em></p>
+    </div>
+  </section>
+
+  <section class="slide" data-blk="5 · Le cut">
+    <div class="inner">
+      <h2>C'est le seul<br>qu'on a.</h2>
+      <p class="sub">Le « je regarde » et la zone de réception n'ont pas encore leur formule.</p>
+      <p class="sub"><em>C'est à vous de les inventer.</em></p>
+    </div>
+  </section>
+
+  <section class="slide lab" data-blk="5 · Le cut">
+    <div class="inner">
+      <p class="tag">À vous</p>
+      <p class="quote">Terminez votre séance : l'échauffement, le deuxième exercice, et la contrainte du match.</p>
+      <p class="mins">20 minutes · puis correction ensemble</p>
+    </div>
+  </section>
+
+  <!-- ============ BLOC 6 ============ -->
+  <section class="slide" data-blk="6 · Où piocher">
+    <div class="inner">
+      <h2>Où piocher</h2>
+      <ul>
+        <li><b>Le support coachs</b> — tout ce qu'on a vu, en une page</li>
+        <li><b>La banque d'exercices</b> — filtrable par type, niveau, intensité</li>
+        <li><b>L'archive des séances</b> — les progressions complètes, thème par thème</li>
+      </ul>
+      <p class="sub">Vous n'avez pas à inventer. Connaissez-en cinq, et vous tenez une saison.</p>
+    </div>
+  </section>
+
+  <section class="slide sec" data-blk="Fin">
+    <div class="inner">
+      <h1>Vous venez de voir<br>un geste découpé.</h1>
+      <p class="sub">Vous savez maintenant en découper un autre.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="bar" id="bar"></div>
+<div class="chrome">
+  <span class="blk" id="blk"></span>
+  <span class="cnt" id="cnt"></span>
+</div>
+<div class="hint">← → · F plein écran</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  var bar = document.getElementById('bar');
+  var cnt = document.getElementById('cnt');
+  var blk = document.getElementById('blk');
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    cnt.textContent = (i + 1) + ' / ' + slides.length;
+    blk.textContent = slides[i].getAttribute('data-blk') || '';
+    try { location.hash = String(i + 1); } catch (e) {}
+  }
+  function next(){ show(i + 1); }
+  function prev(){ show(i - 1); }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+      else { document.exitFullscreen && document.exitFullscreen(); }
+    }
+  });
+
+  document.addEventListener('click', function(e){
+    if (e.clientX < window.innerWidth * 0.22) { prev(); } else { next(); }
+  });
+
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 45) { dx < 0 ? next() : prev(); }
+    x0 = null;
+  }, {passive:true});
+
+  var start = parseInt((location.hash || '').replace('#',''), 10);
+  show(isNaN(start) ? 0 : start - 1);
+})();
+</script>

@@ -1,0 +1,212 @@
+<title>Ulti Coach</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%A5%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --paper:#F6F7F5; --surface:#FFFFFF; --surface-2:#EFF1EE;
+  --ink:#141A1F; --ink-soft:#4E5A62; --ink-faint:#7C8890;
+  --rule:#DCE0DC; --rule-strong:#C3C9C3;
+  --accent:#1B3A8F; --accent-soft:#E7ECF8;
+  --marker:#C9541A; --marker-soft:#FBEBE0;
+  --plot-warm:#B57A0B; --plot-warm-bg:#FAF0D9;
+  --plot-blue:#1F5D9E; --plot-blue-bg:#E4EFF9;
+  --plot-violet:#5F3F94; --plot-violet-bg:#EDE7F8;
+  --plot-green:#26694A; --plot-green-bg:#E0F0E7;
+  --plot-red:#A9342A; --plot-red-bg:#FAE5E2;
+  --shadow:0 1px 2px rgba(20,26,31,.05),0 10px 30px -14px rgba(20,26,31,.22);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+    --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+    --rule:#2A333B; --rule-strong:#3B4650;
+    --accent:#89A9EC; --accent-soft:#1A2440;
+    --marker:#F08B51; --marker-soft:#301C11;
+    --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+    --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+    --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+    --plot-green:#63BE93; --plot-green-bg:#12271D;
+    --plot-red:#E4796C; --plot-red-bg:#2E1614;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+  --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+  --rule:#2A333B; --rule-strong:#3B4650;
+  --accent:#89A9EC; --accent-soft:#1A2440;
+  --marker:#F08B51; --marker-soft:#301C11;
+  --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+  --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+  --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+  --plot-green:#63BE93; --plot-green-bg:#12271D;
+  --plot-red:#E4796C; --plot-red-bg:#2E1614;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+/* hero */
+.hero{
+  border-bottom:1px solid var(--rule);
+  background:
+    radial-gradient(120% 90% at 100% 0%,var(--accent-soft) 0%,transparent 55%),
+    var(--surface);
+  padding:66px 0 46px;
+}
+.hero .wrap{display:flex;flex-direction:column;gap:16px}
+.eyebrow{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.74rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--marker);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule-strong)}
+h1{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(2.7rem,8vw,4.6rem);font-weight:900;line-height:.95;
+  letter-spacing:-.035em;margin:0;text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--accent)}
+.standfirst{font-size:1.24rem;line-height:1.5;color:var(--ink-soft);max-width:50ch;margin:0}
+.hero .meta{
+  font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);
+  letter-spacing:.03em;border-top:1px solid var(--rule);padding-top:16px;margin-top:6px;
+}
+
+/* groups */
+main{padding:20px 0 40px}
+.group{padding:34px 0 8px}
+.group > h2{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+  margin:0 0 4px;
+}
+.group > p.hint{font-size:.98rem;color:var(--ink-soft);margin:0 0 20px;max-width:56ch}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{
+  display:flex;flex-direction:column;gap:9px;text-decoration:none;color:inherit;
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:5px solid var(--rule-strong);border-radius:8px;
+  padding:22px 22px 18px;box-shadow:var(--shadow);
+  transition:transform .13s ease,box-shadow .13s ease,border-color .13s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(20,26,31,.06),0 18px 40px -18px rgba(20,26,31,.4)}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.card .ico{font-size:1.9rem;line-height:1}
+.card .cname{
+  font-family:"Archivo",system-ui,sans-serif;font-size:1.22rem;font-weight:800;
+  letter-spacing:-.02em;line-height:1.12;
+}
+.card .cdesc{font-size:.96rem;color:var(--ink-soft);line-height:1.45;flex:1}
+.card .cgo{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.82rem;font-weight:700;
+  color:var(--accent);letter-spacing:.02em;margin-top:2px;
+}
+.card.c-blue{border-left-color:var(--plot-blue)}
+.card.c-green{border-left-color:var(--plot-green)}
+.card.c-warm{border-left-color:var(--plot-warm)}
+.card.c-violet{border-left-color:var(--plot-violet)}
+.card.c-marker{border-left-color:var(--marker)}
+
+/* note */
+.note{
+  margin:36px 0 0;padding:18px 22px;border-radius:8px;
+  background:var(--surface-2);border:1px solid var(--rule);
+  font-size:.94rem;color:var(--ink-soft);
+}
+.note strong{color:var(--ink);font-weight:600}
+
+footer{
+  border-top:1px solid var(--rule);margin-top:20px;
+  padding:30px 0 60px;color:var(--ink-faint);font-size:.85rem;
+}
+footer a{color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Ultimate frisbee · Formation des entraîneurs</p>
+    <h1>La méthode <em>du club</em></h1>
+    <p class="standfirst">Tout ce qu'il faut pour construire et animer une séance, saison après saison. Choisis un support pour commencer.</p>
+    <p class="meta">Un thème à la fois · une trame qui ne change pas · un vocabulaire commun · des variables pour tous les niveaux</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="group">
+    <h2>Pour la salle</h2>
+    <p class="hint">À projeter pendant la formation.</p>
+    <div class="cards">
+      <a class="card c-blue" href="diaporama.html">
+        <span class="ico">📽️</span>
+        <span class="cname">Diaporama de l'atelier</span>
+        <span class="cdesc">Les 31 écrans projetés pendant les 3 heures. Navigation flèches, espace, clic, F plein écran, swipe.</span>
+        <span class="cgo">Ouvrir →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2>Pour toi, le jour J</h2>
+    <p class="hint">Ton guide d'animation, à garder sous la main.</p>
+    <div class="cards">
+      <a class="card c-marker" href="conducteur.html">
+        <span class="ico">🧭</span>
+        <span class="cname">Conducteur d'animation</span>
+        <span class="cdesc">Le minutage bloc par bloc, ce que tu dis, ce que tu regardes, les pièges. Avec les deux fiches à imprimer.</span>
+        <span class="cgo">Ouvrir →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2>Pour les coachs, à garder toute l'année</h2>
+    <p class="hint">Le lien à leur envoyer à la fin. Lisible sur téléphone, au bord du terrain.</p>
+    <div class="cards">
+      <a class="card c-green" href="fil-rouge.html">
+        <span class="ico">🧵</span>
+        <span class="cname">Le Fil Rouge</span>
+        <span class="cdesc">Le support complet : les 3 niveaux, l'année, le thème, la séance, l'exercice, les mots, le terrain, le répertoire, le mémo.</span>
+        <span class="cgo">Ouvrir →</span>
+      </a>
+      <a class="card c-violet" href="fiches.html">
+        <span class="ico">📝</span>
+        <span class="cname">Les fiches à photocopier</span>
+        <span class="cdesc">Deux pages A4 : « Ma séance » et « Mon exercice ». À remplir pendant les ateliers, à réutiliser chaque semaine.</span>
+        <span class="cgo">Ouvrir →</span>
+      </a>
+      <a class="card c-warm" href="lexique.html">
+        <span class="ico">🥏</span>
+        <span class="cname">Le lexique du club</span>
+        <span class="cdesc">Tout le vocabulaire commun, du cadre PPA aux mots imagés — porte placard, patate chaude, les chiens, le phare.</span>
+        <span class="cgo">Ouvrir →</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="note">
+    <strong>Un seul principe.</strong> Un même thème pour tout le club, une trame de séance qui ne bouge pas, les mêmes mots par tous les coachs. Ce qui change d'un groupe à l'autre, c'est seulement jusqu'où on pousse le détail.
+  </div>
+
+</main>
+
+<footer class="wrap">
+  <p>Site de la méthode d'entraînement du club · Ultimate frisbee.</p>
+  <p>Les documents de travail internes (séances nominatives, playbook compétition) ne figurent volontairement pas ici.</p>
+</footer>

@@ -1,0 +1,567 @@
+<title>Conducteur de l'atelier coachs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F6F7F5;
+  --surface:#FFFFFF;
+  --surface-2:#EFF1EE;
+  --ink:#141A1F;
+  --ink-soft:#4E5A62;
+  --ink-faint:#7C8890;
+  --rule:#DCE0DC;
+  --rule-strong:#C3C9C3;
+  --accent:#1B3A8F;
+  --accent-soft:#E7ECF8;
+  --marker:#C9541A;
+  --marker-soft:#FBEBE0;
+  --plot-warm:#B57A0B;
+  --plot-warm-bg:#FAF0D9;
+  --plot-blue:#1F5D9E;
+  --plot-blue-bg:#E4EFF9;
+  --plot-violet:#5F3F94;
+  --plot-violet-bg:#EDE7F8;
+  --plot-green:#26694A;
+  --plot-green-bg:#E0F0E7;
+  --plot-red:#A9342A;
+  --plot-red-bg:#FAE5E2;
+  --shadow:0 1px 2px rgba(20,26,31,.05),0 8px 24px -12px rgba(20,26,31,.18);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+    --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+    --rule:#2A333B; --rule-strong:#3B4650;
+    --accent:#89A9EC; --accent-soft:#1A2440;
+    --marker:#F08B51; --marker-soft:#301C11;
+    --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+    --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+    --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+    --plot-green:#63BE93; --plot-green-bg:#12271D;
+    --plot-red:#E4796C; --plot-red-bg:#2E1614;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+  --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+  --rule:#2A333B; --rule-strong:#3B4650;
+  --accent:#89A9EC; --accent-soft:#1A2440;
+  --marker:#F08B51; --marker-soft:#301C11;
+  --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+  --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+  --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+  --plot-green:#63BE93; --plot-green-bg:#12271D;
+  --plot-red:#E4796C; --plot-red-bg:#2E1614;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Newsreader",Georgia,serif;font-size:17px;line-height:1.6;margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:78ch;margin:0 auto;padding:0 22px}
+
+header{border-bottom:2px solid var(--ink);padding:56px 0 32px;background:var(--surface)}
+header .wrap{display:flex;flex-direction:column;gap:16px}
+.eyebrow{
+  font-family:"Archivo",sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--marker);
+}
+h1{
+  font-family:"Archivo",sans-serif;font-size:clamp(2.2rem,6.5vw,3.3rem);
+  font-weight:800;line-height:1;letter-spacing:-.03em;margin:0;text-wrap:balance;
+}
+.sub{font-size:1.14rem;color:var(--ink-soft);margin:0;max-width:54ch}
+.meta{
+  display:flex;flex-wrap:wrap;gap:8px 22px;
+  font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);
+  border-top:1px solid var(--rule);padding-top:14px;
+}
+.meta b{color:var(--ink);font-weight:500}
+
+/* prep */
+.prep{padding:44px 0;border-bottom:1px solid var(--rule)}
+h2{
+  font-family:"Archivo",sans-serif;font-size:clamp(1.5rem,4vw,2.05rem);
+  font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:0 0 16px;text-wrap:balance;
+}
+h3{font-family:"Archivo",sans-serif;font-size:1.05rem;font-weight:700;margin:26px 0 9px}
+p{margin:0 0 14px}
+ul,ol{padding-left:1.15em;margin:0 0 14px}
+li{margin-bottom:6px}
+li::marker{color:var(--ink-faint)}
+strong{font-weight:600}
+.checklist{list-style:none;padding:0}
+.checklist li{
+  display:flex;gap:11px;align-items:flex-start;margin-bottom:9px;font-size:.97rem;
+}
+.checklist li::before{
+  content:"";flex:0 0 15px;height:15px;margin-top:5px;
+  border:1.5px solid var(--rule-strong);border-radius:3px;background:var(--surface);
+}
+
+/* timeline */
+.run{padding:10px 0 0}
+.block{
+  display:grid;grid-template-columns:96px 1fr;gap:0;
+  border-bottom:1px solid var(--rule);
+}
+.rail{
+  border-right:2px solid var(--rule);padding:32px 16px 32px 0;text-align:right;
+  position:relative;
+}
+.rail .clock{
+  font-family:"IBM Plex Mono",monospace;font-size:1.02rem;font-weight:600;
+  color:var(--ink);display:block;letter-spacing:-.02em;
+}
+.rail .dur{
+  font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--ink-faint);
+  display:block;margin-top:3px;
+}
+.rail::after{
+  content:"";position:absolute;right:-6px;top:38px;width:10px;height:10px;
+  border-radius:50%;background:var(--accent);border:2px solid var(--paper);
+}
+.pause .rail::after{background:var(--ink-faint)}
+.body{padding:32px 0 32px 26px;min-width:0}
+.body h2{margin-bottom:6px}
+.kicker{
+  font-family:"Archivo",sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--marker);margin:0 0 8px;
+}
+.goal{
+  font-size:1.02rem;color:var(--ink-soft);margin:0 0 20px;
+  padding-left:14px;border-left:3px solid var(--rule-strong);
+}
+@media(max-width:640px){
+  .block{grid-template-columns:1fr}
+  .rail{
+    border-right:0;border-bottom:1px solid var(--rule);text-align:left;
+    padding:22px 0 10px;display:flex;align-items:baseline;gap:12px;
+  }
+  .rail::after{display:none}
+  .rail .dur{margin-top:0}
+  .body{padding:16px 0 30px}
+}
+
+/* boxes */
+.say,.do,.watch,.trap{
+  border-radius:5px;padding:16px 18px;margin:16px 0;font-size:.97rem;
+}
+.say{background:var(--accent-soft);border:1px solid var(--rule)}
+.do{background:var(--marker-soft);border:1px solid var(--rule)}
+.watch{background:var(--surface);border:1px solid var(--rule)}
+.trap{background:var(--plot-red-bg);border:1px solid var(--rule)}
+.say > :last-child,.do > :last-child,.watch > :last-child,.trap > :last-child{margin-bottom:0}
+.lab{
+  font-family:"Archivo",sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;display:block;margin-bottom:9px;
+}
+.say .lab{color:var(--accent)}
+.do .lab{color:var(--marker)}
+.watch .lab{color:var(--ink-faint)}
+.trap .lab{color:var(--plot-red)}
+.quote{
+  font-family:"Archivo",sans-serif;font-weight:600;font-size:1.02rem;
+  line-height:1.35;margin:0 0 10px;text-wrap:balance;
+}
+.say ul,.do ul,.watch ul,.trap ul{margin-bottom:0}
+.say li,.do li,.watch li,.trap li{margin-bottom:6px}
+
+.big{
+  font-family:"Archivo",sans-serif;font-size:clamp(1.2rem,3.6vw,1.6rem);
+  font-weight:800;line-height:1.2;letter-spacing:-.02em;color:var(--accent);
+  margin:14px 0;text-wrap:balance;
+}
+
+/* fiches */
+.sheet{
+  border:2px solid var(--ink);border-radius:5px;background:var(--surface);
+  margin:26px 0;overflow:hidden;
+}
+.sheet-head{
+  padding:12px 16px;border-bottom:2px solid var(--ink);
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+.sheet-head h4{
+  font-family:"Archivo",sans-serif;font-size:.95rem;font-weight:800;
+  letter-spacing:.02em;text-transform:uppercase;margin:0;
+}
+.sheet-head span{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-faint)}
+.row{display:grid;border-bottom:1px solid var(--rule-strong)}
+.row:last-child{border-bottom:0}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:1fr 1fr}
+.g1{grid-template-columns:1fr}
+.box{padding:12px 14px;border-right:1px solid var(--rule-strong);min-height:74px}
+.box:last-child{border-right:0}
+.box .lab2{
+  font-family:"Archivo",sans-serif;font-size:.66rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;
+  display:inline-block;margin-bottom:7px;
+}
+.tall{min-height:118px}
+.b-ink .lab2{background:var(--surface-2);color:var(--ink-soft)}
+.b-warm .lab2{background:var(--plot-warm-bg);color:var(--plot-warm)}
+.b-blue .lab2{background:var(--plot-blue-bg);color:var(--plot-blue)}
+.b-violet .lab2{background:var(--plot-violet-bg);color:var(--plot-violet)}
+.b-green .lab2{background:var(--plot-green-bg);color:var(--plot-green)}
+.b-red .lab2{background:var(--plot-red-bg);color:var(--plot-red)}
+.lines{
+  background-image:repeating-linear-gradient(to bottom,transparent 0 25px,var(--rule) 25px 26px);
+  min-height:78px;
+}
+@media(max-width:620px){
+  .g3,.g2{grid-template-columns:1fr}
+  .box{border-right:0;border-bottom:1px solid var(--rule-strong)}
+  .row:last-child .box:last-child{border-bottom:0}
+}
+
+.after{padding:44px 0;border-top:2px solid var(--ink)}
+footer{padding:36px 0 64px;color:var(--ink-faint);font-size:.85rem}
+
+@page{size:A4 portrait;margin:14mm 13mm}
+@media print{
+  body{background:#fff;color:#000;font-size:10.5pt}
+  header,.prep,.run,.after,footer{page-break-inside:avoid}
+  .block{page-break-inside:avoid}
+  .sheet{page-break-before:always;page-break-inside:avoid;box-shadow:none}
+  .say,.do,.watch,.trap{border:1px solid #999;background:#fff}
+}
+
+/* --- bandeau navigation du site --- */
+.sitebar{display:flex;align-items:center;gap:2px;flex-wrap:wrap;padding:8px 16px;background:var(--ink);font-family:"Archivo",system-ui,sans-serif}
+.sitebar a{color:var(--paper);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.02em;padding:6px 11px;border-radius:5px;white-space:nowrap;opacity:.82}
+.sitebar a:hover{opacity:1;background:rgba(255,255,255,.12)}
+.sitebar a.home{opacity:1;font-weight:800}
+@media print{.sitebar{display:none}}
+</style>
+
+<nav class="sitebar" aria-label="Navigation du site">
+  <a class="home" href="index.html">🥏 Accueil</a>
+  <a href="fil-rouge.html">Fil rouge</a>
+  <a href="diaporama.html">Diaporama</a>
+  <a href="conducteur.html">Conducteur</a>
+  <a href="fiches.html">Fiches</a>
+  <a href="lexique.html">Lexique</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Formation des entraîneurs du club</div>
+    <h1>Conducteur de l'après-midi</h1>
+    <p class="sub">Trois heures pour qu'ils repartent avec leur séance de mardi, écrite de leur main.</p>
+    <div class="meta">
+      <span><b>Durée</b> 3 h, pause comprise</span>
+      <span><b>Format</b> atelier — 90 min de contenu, 75 min de pratique</span>
+      <span><b>Thème creusé</b> le cut</span>
+    </div>
+  </div>
+</header>
+
+<section class="prep wrap">
+  <h2>Avant de commencer</h2>
+
+  <h3>À imprimer</h3>
+  <ul class="checklist">
+    <li><strong>La trame de séance vierge</strong> — 1 par coach (en bas de cette page)</li>
+    <li><strong>La fiche exercice vierge</strong> — 2 par coach</li>
+    <li>Le lexique du club, si tu veux qu'ils l'aient sur papier</li>
+  </ul>
+
+  <h3>À prévoir</h3>
+  <ul class="checklist">
+    <li>Un vidéoprojecteur, et le <strong>support coachs</strong> ouvert dessus</li>
+    <li>Un paperboard ou un tableau pour la correction collective</li>
+    <li>Des stylos — il en manque toujours</li>
+    <li>De quoi noter <strong>leurs questions</strong> pendant les ateliers</li>
+  </ul>
+
+  <div class="watch">
+    <span class="lab">Le principe de l'après-midi</span>
+    <p>Chaque bloc se termine par une <strong>trace écrite</strong> sur leur feuille. À la fin, leur séance est finie. Si tu prends du retard, tu rognes sur ce que tu racontes — <strong>jamais sur ce qu'ils écrivent</strong>.</p>
+  </div>
+</section>
+
+<div class="run wrap">
+
+  <div class="block">
+    <div class="rail"><span class="clock">14:00</span><span class="dur">15 min</span></div>
+    <div class="body">
+      <p class="kicker">Bloc 1</p>
+      <h2>Une année a une forme</h2>
+      <p class="goal">Qu'ils comprennent qu'ils ne partent pas de zéro chaque semaine.</p>
+
+      <div class="say">
+        <span class="lab">Ce que tu dis</span>
+        <p class="quote">« Vous n'avez pas à choisir quoi travailler. C'est décidé pour l'année, et c'est le même thème pour tout le club. »</p>
+        <ul>
+          <li>Tu montres le calendrier des 10 thèmes. <strong>Tu ne le détailles pas</strong> — c'est le principe qui compte, pas les mois.</li>
+          <li>Les quatre règles : l'individuel avant le collectif · on alterne attaque et défense · <strong>on ne finit jamais un thème, on y revient</strong> · juin, on consolide.</li>
+          <li>Ce qui change d'un groupe à l'autre, ce n'est pas le thème — c'est <strong>jusqu'où on pousse le détail</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="watch">
+        <span class="lab">La question à leur poser</span>
+        <p style="margin:0">« Qui a déjà eu l'impression de refaire trois fois la même séance sans savoir pourquoi&nbsp;? » — ça ouvre le sujet de la spirale, et ça les fait parler dès le début.</p>
+      </div>
+
+      <div class="trap">
+        <span class="lab">Le piège</span>
+        <p style="margin:0">Dérouler les dix mois un par un. Tu y passeras 40 minutes et ils auront tout oublié. <strong>Quinze minutes, c'est le principe et rien d'autre.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="rail"><span class="clock">14:15</span><span class="dur">30 min</span></div>
+    <div class="body">
+      <p class="kicker">Bloc 2 — 15 min + 15 min d'atelier</p>
+      <h2>Une séance a une forme</h2>
+      <p class="goal">Qu'ils repartent avec une trame qu'ils peuvent remplir sans réfléchir à la structure.</p>
+
+      <div class="say">
+        <span class="lab">Ce que tu dis</span>
+        <ul>
+          <li>Les cinq blocs, toujours dans le même ordre. <strong>Elle ne change jamais</strong> — c'est ça qui permet aux joueurs de se concentrer sur le contenu.</li>
+          <li>Un seul détail par séance. Si tu ne peux pas la résumer en une phrase, elle en contient trop.</li>
+          <li>Réutilise le même exercice. Le réflexe contre-intuitif : ils vont vouloir varier « pour ne pas ennuyer ». C'est l'inverse — <strong>un exercice connu libère toute leur attention pour le détail travaillé.</strong></li>
+        </ul>
+        <p class="big">Le lexique s'écrit avant la séance, pas pendant.</p>
+        <p style="margin-bottom:0">C'est le point le plus important du bloc. Trois mots décidés à l'avance valent mieux que vingt improvisés au bord du terrain.</p>
+      </div>
+
+      <div class="do">
+        <span class="lab">L'atelier — 15 min</span>
+        <p class="quote">« Prenez la trame. Choisissez la phase du cut que vous voulez travailler mardi. Écrivez le thème, et les trois mots que vous emploierez. Rien d'autre pour l'instant. »</p>
+        <p style="margin-bottom:0">Tu distribues la trame vierge. Tu passes voir chacun.</p>
+      </div>
+
+      <div class="watch">
+        <span class="lab">Ce que tu regardes</span>
+        <ul>
+          <li><strong>Ceux qui écrivent huit mots</strong> au lieu de trois → fais-les couper. Trois, pas plus.</li>
+          <li><strong>Ceux qui écrivent « le cut »</strong> comme thème → c'est le thème du mois, pas celui de la séance. Fais-les descendre d'un cran : « la prise d'info », « le cut 1 »…</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="rail"><span class="clock">14:45</span><span class="dur">35 min</span></div>
+    <div class="body">
+      <p class="kicker">Bloc 3 — 15 min + 20 min d'atelier</p>
+      <h2>Un exercice a une forme</h2>
+      <p class="goal">Qu'ils sachent transformer « un exercice qu'ils font déjà » en exercice qui a un objectif.</p>
+
+      <div class="say">
+        <span class="lab">Ce que tu dis</span>
+        <ul>
+          <li>Chaque case compte. <strong>Si l'une est vide, l'exercice n'est pas prêt</strong> — et c'est presque toujours le critère de réussite qui manque.</li>
+          <li>Un critère de réussite, c'est ce que le joueur <strong>vérifie lui-même, sans toi</strong>.</li>
+          <li>Les trois formes : observable, chiffré, temporel.</li>
+          <li>Le score enseigne à ta place. Tu ne répètes plus « ne perdez pas le disque » : le barème le dit pour toi.</li>
+          <li>La progression en quatre paliers : pas de consigne → une consigne → avec défense → en compétition. <strong>Avec ça, un seul exercice tient trente minutes.</strong></li>
+        </ul>
+      </div>
+
+      <div class="watch">
+        <span class="lab">La démonstration à faire</span>
+        <p style="margin:0">Prends <strong>La Flèche</strong> et remplis les six cases devant eux, à voix haute, en te trompant une fois exprès sur l'objectif (« travailler le cut » → trop vague → « partir uniquement quand la passe précédente est lâchée »). Ils comprennent la différence en dix secondes.</p>
+      </div>
+
+      <div class="do">
+        <span class="lab">L'atelier — 20 min</span>
+        <p class="quote">« Prenez un exercice que vous connaissez déjà et que vos joueurs connaissent. Remplissez la fiche en entier. »</p>
+        <p style="margin-bottom:0">Deux fiches par personne : une pour l'exercice 1, une pour l'exercice 2 s'ils ont le temps.</p>
+      </div>
+
+      <div class="trap">
+        <span class="lab">Le piège</span>
+        <p style="margin:0">Ils vont vouloir <strong>inventer un exercice neuf</strong>. Interdis-le. Tout l'intérêt est de reprendre un exercice connu et de lui donner un objectif — c'est exactement ce qu'ils feront mardi.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block pause">
+    <div class="rail"><span class="clock">15:20</span><span class="dur">15 min</span></div>
+    <div class="body">
+      <p class="kicker">Pause</p>
+      <h2>Quinze minutes</h2>
+      <p class="goal">Profites-en pour lire deux ou trois fiches par-dessus l'épaule — tu sauras quoi corriger dans le bloc suivant.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="rail"><span class="clock">15:35</span><span class="dur">30 min</span></div>
+    <div class="body">
+      <p class="kicker">Bloc 4 — 20 min + 10 min d'atelier</p>
+      <h2>Le terrain</h2>
+      <p class="goal">Qu'ils cessent d'avoir peur du mardi soir où il y a douze joueurs de six niveaux différents.</p>
+
+      <div class="say">
+        <span class="lab">Ce que tu dis</span>
+        <ul>
+          <li><strong>On ne sépare pas le groupe.</strong> On règle l'exigence avec la variable + et la variable −, sur le même exercice, en même temps, sans rien annoncer.</li>
+          <li>Les sept leviers : espace · temps · repères · défense · départ · technique · enchaînement.</li>
+          <li>S'il y a plusieurs ateliers de difficultés différentes : <strong>chacun se positionne lui-même</strong>. Tu n'as personne à trier.</li>
+          <li>Adapter, c'est la base de l'animation. Tu ne prépares pas une séance calibrée — tu prépares un contenu <strong>que tu sais découper</strong>.</li>
+        </ul>
+        <p class="big">Assez de jeu, assez de repos, jamais assez d'attente pour qu'ils s'ennuient ou se refroidissent.</p>
+        <p style="margin-bottom:0">Et&nbsp;: <strong>toujours avoir plein de plots.</strong> Un plot de plus, c'est une file d'attente en moins.</p>
+      </div>
+
+      <div class="watch">
+        <span class="lab">La démonstration à faire</span>
+        <p style="margin:0">Prends <strong>la fiche d'un participant</strong>, à voix haute, et fais-lui trouver deux variables en direct. C'est plus convaincant qu'un exemple à toi — et ça montre que ça marche sur n'importe quel exercice.</p>
+      </div>
+
+      <div class="do">
+        <span class="lab">L'atelier — 10 min</span>
+        <p class="quote">« Ajoutez une variable + et une variable − à votre fiche. Une seule de chaque, mais qui sert vraiment votre objectif. »</p>
+      </div>
+
+      <div class="watch">
+        <span class="lab">Ce que tu regardes</span>
+        <p style="margin:0">Les <strong>variables + qui ajoutent une difficulté sans rapport avec l'objectif</strong> (« et en plus ils courent »). Une variable qui ne sert pas l'objectif n'est pas une variable, c'est une punition.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="rail"><span class="clock">16:05</span><span class="dur">45 min</span></div>
+    <div class="body">
+      <p class="kicker">Bloc 5 — 15 min + 30 min d'atelier et correction</p>
+      <h2>Le cut, décortiqué</h2>
+      <p class="goal">Leur montrer un geste entièrement décomposé, une fois — pour qu'ils sachent en décomposer un autre.</p>
+
+      <div class="say">
+        <span class="lab">Ce que tu dis</span>
+        <ul>
+          <li>Les sept temps, dans l'ordre : le stack → je regarde → cut 1 → changement de direction → cut 2 → zone de réception → recyclage.</li>
+          <li><strong>Le club a passé six séances sur ce seul geste.</strong> Ce n'est pas trop, c'est ce qu'il faut.</li>
+          <li>PPA : ce qu'on décompose, ce n'est pas le geste, c'est <strong>la boucle de décision</strong>. Un joueur qui rate son cut a rarement un problème de jambes.</li>
+        </ul>
+        <p class="big">Le cut 1 ne sert pas à recevoir le disque. Il sert à déséquilibrer la défense.</p>
+        <p style="margin-bottom:0">C'est le contresens à casser. Un joueur déçu de ne pas recevoir sur son cut 1 fait des cuts 1 mous — et un cut 1 mou ne déséquilibre personne.</p>
+      </div>
+
+      <div class="do">
+        <span class="lab">Le moment à ne pas rater</span>
+        <p class="quote">« J'arrive, petit pas, je plante, je tourne et pousse&nbsp;! »</p>
+        <p><strong>Fais-le dire à voix haute par tout le monde.</strong> Debout, si la salle le permet. Puis décompose mot à mot, et explique pourquoi ce format marche : rythmé, à la première personne, une action par mot, criable depuis le bord du terrain.</p>
+        <p style="margin-bottom:0">Termine par&nbsp;: <em>« C'est le seul qu'on a. Les autres phases n'en ont pas encore — c'est à vous de les inventer. »</em></p>
+      </div>
+
+      <div class="do">
+        <span class="lab">L'atelier — 20 min</span>
+        <p class="quote">« Terminez votre séance : l'échauffement, le deuxième exercice, et la contrainte du match. »</p>
+      </div>
+
+      <div class="watch">
+        <span class="lab">La correction collective — 10 min</span>
+        <p style="margin:0">Deux ou trois séances au tableau, pas plus. Choisis-en une <strong>bien</strong> et une <strong>à retravailler</strong> — et corrige celle-là devant tout le monde, sans humilier personne. C'est là qu'ils apprennent le plus.</p>
+      </div>
+
+      <div class="trap">
+        <span class="lab">Ce que tu dois noter pendant ce bloc</span>
+        <p style="margin:0"><strong>Leurs questions.</strong> C'est le moment où sortiront les vraies erreurs classiques — celles que tu corriges en réflexe sur le terrain et qui ne sont écrites nulle part. Note-les brutes, on les rangera après.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="rail"><span class="clock">16:50</span><span class="dur">10 min</span></div>
+    <div class="body">
+      <p class="kicker">Bloc 6</p>
+      <h2>Où piocher</h2>
+      <p class="goal">Qu'ils sachent où aller chercher, seuls, la semaine prochaine.</p>
+
+      <div class="say">
+        <span class="lab">Ce que tu montres</span>
+        <ul>
+          <li><strong>Le support coachs</strong> — tout ce qu'on a vu cet après-midi, en une page. Envoie-leur le lien avant qu'ils partent.</li>
+          <li><strong>La banque d'exercices</strong> — filtrable par type, par niveau, par intensité.</li>
+          <li><strong>L'archive des séances</strong> — les progressions complètes, thème par thème. Ils peuvent voir comment le cut a été monté en six séances.</li>
+        </ul>
+      </div>
+
+      <div class="do">
+        <span class="lab">Avant qu'ils partent</span>
+        <p style="margin-bottom:0"><strong>Prends leurs feuilles en photo.</strong> C'est ta trace de l'après-midi, et le point de départ de la relance dans une semaine.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<section class="after wrap">
+  <h2>Après</h2>
+  <ul class="checklist">
+    <li><strong>Le soir même</strong> — mets au propre les questions notées pendant les ateliers. Ce sont les erreurs classiques qui manquent au support.</li>
+    <li><strong>À J+7</strong> — un message à chacun : « alors, cette séance&nbsp;? » C'est ce qui transforme un après-midi en habitude.</li>
+    <li><strong>Au fil de l'année</strong> — chaque nouvelle séance rentre dans l'archive. Elle se construit toute seule.</li>
+  </ul>
+</section>
+
+<section class="prep wrap" style="border-top:2px solid var(--ink);border-bottom:0">
+  <h2>À photocopier</h2>
+  <p>Les deux fiches ci-dessous reprennent le code couleur du support&nbsp;: les coachs retrouvent les mêmes repères sur l'écran, sur le papier et dans l'archive.</p>
+
+  <div class="sheet">
+    <div class="sheet-head">
+      <h4>Ma séance</h4>
+      <span>nom / date</span>
+    </div>
+    <div class="row g2">
+      <div class="box b-ink"><span class="lab2">Thème — la phase</span><div class="lines"></div></div>
+      <div class="box b-warm"><span class="lab2">Mon lexique — 3 mots</span><div class="lines"></div></div>
+    </div>
+    <div class="row g1">
+      <div class="box b-warm"><span class="lab2">Échauffement — gamme · physique · un jeu</span><div class="lines"></div></div>
+    </div>
+    <div class="row g2">
+      <div class="box b-blue tall"><span class="lab2">Exercice 1</span><div class="lines"></div></div>
+      <div class="box b-blue tall"><span class="lab2">Exercice 2</span><div class="lines"></div></div>
+    </div>
+    <div class="row g1">
+      <div class="box b-green"><span class="lab2">Match à thème — la contrainte et les points</span><div class="lines"></div></div>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head">
+      <h4>Mon exercice</h4>
+      <span>nom de l'exercice</span>
+    </div>
+    <div class="row g3">
+      <div class="box b-ink"><span class="lab2">Nb joueurs</span><div class="lines" style="min-height:50px"></div></div>
+      <div class="box b-ink"><span class="lab2">Matériel</span><div class="lines" style="min-height:50px"></div></div>
+      <div class="box b-ink"><span class="lab2">Durée</span><div class="lines" style="min-height:50px"></div></div>
+    </div>
+    <div class="row g2">
+      <div class="box b-blue tall"><span class="lab2">Objectif — une phrase</span><div class="lines"></div></div>
+      <div class="box b-blue tall"><span class="lab2">Critère de réussite — vérifiable sans moi</span><div class="lines"></div></div>
+    </div>
+    <div class="row g1">
+      <div class="box b-violet" style="min-height:150px"><span class="lab2">Déroulement</span><div class="lines" style="min-height:118px"></div></div>
+    </div>
+    <div class="row g2">
+      <div class="box b-green tall"><span class="lab2">Variable (+)</span><div class="lines"></div></div>
+      <div class="box b-red tall"><span class="lab2">Variable (−)</span><div class="lines"></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p>Conducteur d'animation — usage interne. Le support projeté et l'archive des séances sont des documents séparés.</p>
+</footer>

@@ -1,0 +1,866 @@
+<title>Fil Rouge Ultimate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --paper:#F6F7F5;
+  --surface:#FFFFFF;
+  --surface-2:#EFF1EE;
+  --ink:#141A1F;
+  --ink-soft:#4E5A62;
+  --ink-faint:#7C8890;
+  --rule:#DCE0DC;
+  --rule-strong:#C3C9C3;
+  --accent:#1B3A8F;
+  --accent-soft:#E7ECF8;
+  --marker:#C9541A;
+  --marker-soft:#FBEBE0;
+  --plot-warm:#B57A0B;
+  --plot-warm-bg:#FAF0D9;
+  --plot-blue:#1F5D9E;
+  --plot-blue-bg:#E4EFF9;
+  --plot-violet:#5F3F94;
+  --plot-violet-bg:#EDE7F8;
+  --plot-green:#26694A;
+  --plot-green-bg:#E0F0E7;
+  --plot-red:#A9342A;
+  --plot-red-bg:#FAE5E2;
+  --shadow:0 1px 2px rgba(20,26,31,.05),0 8px 24px -12px rgba(20,26,31,.18);
+  --maxw:69ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#11161A;
+    --surface:#181E24;
+    --surface-2:#1F262D;
+    --ink:#E9EBE8;
+    --ink-soft:#A2ADB6;
+    --ink-faint:#7B868E;
+    --rule:#2A333B;
+    --rule-strong:#3B4650;
+    --accent:#89A9EC;
+    --accent-soft:#1A2440;
+    --marker:#F08B51;
+    --marker-soft:#301C11;
+    --plot-warm:#E0B44E;
+    --plot-warm-bg:#2C2413;
+    --plot-blue:#6BA6E0;
+    --plot-blue-bg:#122536;
+    --plot-violet:#A98BE0;
+    --plot-violet-bg:#221934;
+    --plot-green:#63BE93;
+    --plot-green-bg:#12271D;
+    --plot-red:#E4796C;
+    --plot-red-bg:#2E1614;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11161A;
+  --surface:#181E24;
+  --surface-2:#1F262D;
+  --ink:#E9EBE8;
+  --ink-soft:#A2ADB6;
+  --ink-faint:#7B868E;
+  --rule:#2A333B;
+  --rule-strong:#3B4650;
+  --accent:#89A9EC;
+  --accent-soft:#1A2440;
+  --marker:#F08B51;
+  --marker-soft:#301C11;
+  --plot-warm:#E0B44E;
+  --plot-warm-bg:#2C2413;
+  --plot-blue:#6BA6E0;
+  --plot-blue-bg:#122536;
+  --plot-violet:#A98BE0;
+  --plot-violet-bg:#221934;
+  --plot-green:#63BE93;
+  --plot-green-bg:#12271D;
+  --plot-red:#E4796C;
+  --plot-red-bg:#2E1614;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-size:18px;
+  line-height:1.62;
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* ---------- header ---------- */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:
+    repeating-linear-gradient(to bottom,transparent 0 27px,var(--rule) 27px 28px),
+    var(--surface);
+  background-blend-mode:normal;
+  padding:64px 0 40px;
+}
+@media (prefers-reduced-motion:no-preference){
+  .masthead{background-attachment:local}
+}
+.masthead .wrap{display:flex;flex-direction:column;gap:18px}
+.eyebrow{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--marker);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule-strong)}
+h1{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(2.6rem,8vw,4.1rem);
+  font-weight:800;line-height:.98;letter-spacing:-.03em;
+  margin:0;text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--accent)}
+.standfirst{
+  font-size:1.22rem;line-height:1.5;color:var(--ink-soft);
+  max-width:52ch;margin:0;
+}
+.byline{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.76rem;color:var(--ink-faint);letter-spacing:.04em;
+  border-top:1px solid var(--rule);padding-top:14px;margin-top:4px;
+}
+
+/* ---------- nav ---------- */
+nav.toc{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+nav.toc ol{
+  list-style:none;margin:0 auto;padding:0 22px;max-width:var(--maxw);
+  display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin;
+}
+nav.toc a{
+  display:block;white-space:nowrap;
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:.74rem;font-weight:600;letter-spacing:.02em;
+  color:var(--ink-soft);text-decoration:none;
+  padding:13px 10px;border-bottom:2px solid transparent;
+}
+nav.toc a:hover{color:var(--accent);border-bottom-color:var(--rule-strong)}
+nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:3px}
+
+/* ---------- sections ---------- */
+section{padding:60px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+.lvl{
+  display:flex;align-items:baseline;gap:14px;margin-bottom:6px;
+}
+.lvl b{
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:600;
+  color:var(--surface);background:var(--accent);
+  padding:3px 9px;border-radius:3px;letter-spacing:.05em;
+}
+.lvl span{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.74rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+}
+h2{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(1.75rem,4.6vw,2.5rem);font-weight:800;line-height:1.06;
+  letter-spacing:-.022em;margin:0 0 18px;text-wrap:balance;
+}
+h3{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:1.16rem;font-weight:700;letter-spacing:-.008em;
+  margin:36px 0 10px;text-wrap:balance;
+}
+h4{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:.79rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-faint);margin:26px 0 8px;
+}
+p{margin:0 0 16px}
+a{color:var(--accent)}
+strong{font-weight:600}
+.lede{font-size:1.1rem;color:var(--ink-soft);max-width:56ch}
+
+ul,ol{padding-left:1.15em;margin:0 0 16px}
+li{margin-bottom:7px}
+li::marker{color:var(--ink-faint)}
+
+/* ---------- key line ---------- */
+.keyline{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(1.3rem,3.4vw,1.75rem);font-weight:700;line-height:1.22;
+  letter-spacing:-.015em;
+  margin:28px 0;padding:0 0 0 22px;
+  border-left:4px solid var(--marker);
+  text-wrap:balance;
+}
+.keyline small{
+  display:block;font-family:"Newsreader",serif;font-size:.94rem;font-weight:400;
+  letter-spacing:0;color:var(--ink-soft);margin-top:9px;line-height:1.5;
+}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  box-shadow:var(--shadow);padding:24px;margin:26px 0;
+}
+.card > :last-child{margin-bottom:0}
+.tag{
+  display:inline-block;font-family:"Archivo",system-ui,sans-serif;
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:3px;margin-bottom:9px;
+}
+.t-warm{background:var(--plot-warm-bg);color:var(--plot-warm)}
+.t-blue{background:var(--plot-blue-bg);color:var(--plot-blue)}
+.t-violet{background:var(--plot-violet-bg);color:var(--plot-violet)}
+.t-green{background:var(--plot-green-bg);color:var(--plot-green)}
+.t-red{background:var(--plot-red-bg);color:var(--plot-red)}
+.t-ink{background:var(--surface-2);color:var(--ink-soft)}
+
+/* trame de séance */
+.trame{display:flex;flex-direction:column;gap:9px;margin:26px 0}
+.slot{
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:5px solid var(--rule-strong);border-radius:4px;padding:14px 16px;
+}
+.slot h5{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.86rem;font-weight:700;
+  letter-spacing:.02em;margin:0 0 4px;
+}
+.slot p{font-size:.95rem;color:var(--ink-soft);margin:0}
+.s-theme{border-left-color:var(--marker)}
+.s-lex{border-left-color:var(--plot-warm)}
+.s-echauf{border-left-color:var(--plot-warm)}
+.s-exo{border-left-color:var(--plot-blue)}
+.s-match{border-left-color:var(--plot-green)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(max-width:560px){.pair{grid-template-columns:1fr}}
+
+/* fiche exercice */
+.fiche{
+  border:1px solid var(--rule-strong);border-radius:5px;overflow:hidden;
+  margin:26px 0;background:var(--surface);box-shadow:var(--shadow);
+}
+.fiche-row{display:grid;border-bottom:1px solid var(--rule)}
+.fiche-row:last-child{border-bottom:0}
+.r3{grid-template-columns:repeat(3,1fr)}
+.r2{grid-template-columns:1fr 1fr}
+.r1{grid-template-columns:1fr}
+.cell{padding:15px 17px;border-right:1px solid var(--rule)}
+.cell:last-child{border-right:0}
+.cell h6{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px;
+  display:inline-block;padding:2px 6px;border-radius:3px;
+}
+.cell p,.cell ul{font-size:.94rem;margin:0;color:var(--ink-soft)}
+.cell ul{padding-left:1.05em}
+.c-warm h6{background:var(--plot-warm-bg);color:var(--plot-warm)}
+.c-blue h6{background:var(--plot-blue-bg);color:var(--plot-blue)}
+.c-violet h6{background:var(--plot-violet-bg);color:var(--plot-violet)}
+.c-green h6{background:var(--plot-green-bg);color:var(--plot-green)}
+.c-red h6{background:var(--plot-red-bg);color:var(--plot-red)}
+.c-ink h6{background:var(--surface-2);color:var(--ink-soft)}
+@media(max-width:600px){
+  .r3,.r2{grid-template-columns:1fr}
+  .cell{border-right:0;border-bottom:1px solid var(--rule)}
+  .fiche-row:last-child .cell:last-child{border-bottom:0}
+}
+
+/* ---------- le cue ---------- */
+.cue{
+  margin:34px 0;padding:30px 26px;border-radius:5px;
+  background:var(--accent-soft);border:1px solid var(--rule);
+}
+.cue-line{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(1.35rem,4.4vw,2.05rem);font-weight:800;line-height:1.15;
+  letter-spacing:-.022em;color:var(--accent);margin:0 0 22px;text-wrap:balance;
+}
+.cue-grid{display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-size:.95rem}
+.cue-grid dt{
+  font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;
+  color:var(--ink);white-space:nowrap;padding-top:2px;
+}
+.cue-grid dd{margin:0;color:var(--ink-soft)}
+@media(max-width:520px){
+  .cue-grid{grid-template-columns:1fr;gap:2px}
+  .cue-grid dd{margin-bottom:11px}
+}
+
+/* ---------- tables ---------- */
+.scroller{overflow-x:auto;margin:22px 0;border:1px solid var(--rule);border-radius:5px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;min-width:420px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+  background:var(--surface-2);
+}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:.86em}
+
+/* ---------- steps ---------- */
+.steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:22px 0;font-family:"Archivo",system-ui,sans-serif}
+.step{
+  background:var(--surface);border:1px solid var(--rule);border-radius:999px;
+  padding:7px 15px;font-size:.85rem;font-weight:600;
+}
+.step em{font-style:normal;color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;font-size:.8em;margin-right:6px}
+.arrow{color:var(--ink-faint);font-size:.9rem}
+
+/* ---------- glossaire ---------- */
+.glos{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:2px;margin:22px 0}
+.term{padding:12px 14px;background:var(--surface);border:1px solid var(--rule)}
+.term dt{font-family:"Archivo",system-ui,sans-serif;font-size:.9rem;font-weight:700;margin-bottom:3px}
+.term dd{margin:0;font-size:.88rem;color:var(--ink-soft);line-height:1.45}
+.imaged{border-left:3px solid var(--marker)}
+
+/* ---------- repertoire ---------- */
+.rep{margin:20px 0}
+.rep-group{margin-bottom:22px}
+.rep-group > h5{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.74rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--marker);
+  margin:0 0 9px;padding-bottom:5px;border-bottom:1px solid var(--rule);
+}
+.rep-item{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:6px 18px;padding:8px 0;border-bottom:1px dotted var(--rule)}
+.rep-item:last-child{border-bottom:0}
+.rep-item b{font-family:"Archivo",system-ui,sans-serif;font-size:.92rem;font-weight:700}
+.rep-item span{font-size:.9rem;color:var(--ink-soft)}
+@media(max-width:520px){.rep-item{grid-template-columns:1fr;gap:2px}}
+
+/* ---------- memo ---------- */
+.memo{
+  background:var(--surface);border:2px solid var(--ink);border-radius:6px;
+  padding:28px;margin:28px 0;
+}
+.memo h3{margin-top:0}
+.memo-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:600px){.memo-grid{grid-template-columns:1fr}}
+.memo-grid h5{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.74rem;font-weight:700;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--marker);margin:0 0 8px;
+}
+.memo-grid ul{padding-left:1.05em;font-size:.93rem;margin:0}
+.memo-grid li{margin-bottom:6px}
+
+footer{padding:46px 0 70px;color:var(--ink-faint);font-size:.86rem}
+footer p{margin:0 0 8px}
+
+@page{size:A4 portrait;margin:14mm 13mm}
+@media print{
+  nav.toc{display:none}
+  body{font-size:11pt;background:#fff;color:#000}
+  section{page-break-inside:avoid;padding:20px 0}
+  .card,.fiche,.memo{box-shadow:none}
+}
+
+/* --- bandeau navigation du site --- */
+.sitebar{display:flex;align-items:center;gap:2px;flex-wrap:wrap;padding:8px 16px;background:var(--ink);font-family:"Archivo",system-ui,sans-serif}
+.sitebar a{color:var(--paper);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.02em;padding:6px 11px;border-radius:5px;white-space:nowrap;opacity:.82}
+.sitebar a:hover{opacity:1;background:rgba(255,255,255,.12)}
+.sitebar a.home{opacity:1;font-weight:800}
+@media print{.sitebar{display:none}}
+</style>
+
+<nav class="sitebar" aria-label="Navigation du site">
+  <a class="home" href="index.html">🥏 Accueil</a>
+  <a href="fil-rouge.html">Fil rouge</a>
+  <a href="diaporama.html">Diaporama</a>
+  <a href="conducteur.html">Conducteur</a>
+  <a href="fiches.html">Fiches</a>
+  <a href="lexique.html">Lexique</a>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Méthode d'entraînement du club</div>
+    <h1>Le fil rouge de <em>la saison</em></h1>
+    <p class="standfirst">Comment construire une séance qui tient, quand on ne sait pas combien de joueurs viendront ni à quel niveau ils jouent.</p>
+    <p class="byline">Support de formation des entraîneurs · Ultimate frisbee</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sommaire">
+  <ol>
+    <li><a href="#niveaux">Les 3 niveaux</a></li>
+    <li><a href="#annee">L'année</a></li>
+    <li><a href="#theme">Le thème</a></li>
+    <li><a href="#seance">La séance</a></li>
+    <li><a href="#exercice">L'exercice</a></li>
+    <li><a href="#mots">Les mots</a></li>
+    <li><a href="#terrain">Le terrain</a></li>
+    <li><a href="#repertoire">Le répertoire</a></li>
+    <li><a href="#memo">Le mémo</a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+<section id="niveaux">
+  <h2>Une séance ne s'invente pas le mardi soir</h2>
+  <p class="lede">Elle descend de trois décisions déjà prises. Un coach qui part de la page blanche chaque semaine s'épuise et ses joueurs ne progressent pas — parce qu'on ne progresse pas sur douze sujets différents en douze séances.</p>
+
+  <p>Tout le reste de ce document tient dans ces trois niveaux. Ils vont du plus large au plus fin, et <strong>chacun se décide avant le suivant</strong>.</p>
+
+  <div class="trame">
+    <div class="slot s-theme">
+      <h5>Niveau 1 — L'année</h5>
+      <p>Un thème par mois, commun à tout le club. Décidé une fois, en septembre.</p>
+    </div>
+    <div class="slot s-exo">
+      <h5>Niveau 2 — Le thème</h5>
+      <p>On le découpe en phases, dans l'ordre chronologique du jeu. Une phase peut valoir une séance entière.</p>
+    </div>
+    <div class="slot s-match">
+      <h5>Niveau 3 — La séance</h5>
+      <p>Un seul détail à travailler. On choisit un exercice qui le met en lumière.</p>
+    </div>
+  </div>
+
+  <p class="keyline">Quand tu arrives sur le terrain, il ne te reste qu'une question à trancher : lequel de mes exercices met ce détail-là en lumière ce soir&nbsp;?
+  <small>Tout le reste a été décidé en amont. C'est ça qui rend le métier tenable.</small></p>
+</section>
+
+<section id="annee">
+  <div class="lvl"><b>Niveau 1</b><span>L'année</span></div>
+  <h2>Le fil rouge du club</h2>
+  <p>Un thème par mois, <strong>le même pour tous les groupes</strong>. Ce qui change d'un groupe à l'autre, ce n'est pas le thème — c'est jusqu'où on pousse le détail.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Mois</th><th>Thème</th><th>Face de jeu</th></tr></thead>
+      <tbody>
+        <tr><td class="num">Sept.</td><td><strong>Le cut</strong></td><td>Attaque</td></tr>
+        <tr><td class="num">Oct.</td><td>Continuité et prise de décision</td><td>Attaque</td></tr>
+        <tr><td class="num">Nov.</td><td>Défense — les bases</td><td>Défense</td></tr>
+        <tr><td class="num">Déc.</td><td>Passer devant l'attaque</td><td>Défense</td></tr>
+        <tr><td class="num">Janv.</td><td>Défense de zone</td><td>Défense</td></tr>
+        <tr><td class="num">Févr.</td><td>Techniques d'attaque</td><td>Attaque</td></tr>
+        <tr><td class="num">Mars</td><td>Défense individuelle — perfectionnement</td><td>Défense</td></tr>
+        <tr><td class="num">Avril</td><td>Défense de zone — perfectionnement</td><td>Défense</td></tr>
+        <tr><td class="num">Mai</td><td>Attaque collective — perfectionnement</td><td>Attaque</td></tr>
+        <tr><td class="num">Juin</td><td>Travail d'équipe</td><td>Transverse</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Les quatre règles qui font ce calendrier</h3>
+
+  <h4>L'individuel avant le collectif</h4>
+  <p>Septembre, c'est ce que fait <em>un</em> joueur. Octobre, c'est le lien entre eux. On ne travaille pas la continuité tant que le cut individuel ne tient pas — sinon on empile deux difficultés.</p>
+
+  <h4>Alterner attaque et défense</h4>
+  <p>Deux mois d'affilée sur la même face du jeu et le groupe sature. L'alternance maintient l'attention et fait comprendre chaque notion des deux côtés.</p>
+
+  <h4>Progresser en spirale, pas en liste</h4>
+  <p>La défense revient en mars après novembre. La zone revient en avril après janvier. <strong>On ne finit jamais un thème</strong> — on y revient plus fin. Un thème « traité » n'est pas un thème acquis, et c'est l'erreur la plus fréquente quand on débute.</p>
+
+  <h4>Finir par le jeu contraint</h4>
+  <p>En juin, pas de contenu neuf. Des matchs à contraintes, et on consolide.</p>
+</section>
+
+<section id="theme">
+  <div class="lvl"><b>Niveau 2</b><span>Le thème</span></div>
+  <h2>Découper avant d'enseigner</h2>
+  <p>Un thème dure un mois. Ce que tu travailles réellement un soir donné, ce n'est pas « le cut » — c'est <strong>une phase du cut</strong>. Le découpage suit l'ordre chronologique du jeu.</p>
+
+  <div class="card">
+    <span class="tag t-blue">Exemple — le thème du mois de septembre</span>
+    <h3 style="margin-top:4px">Le cut, en sept temps</h3>
+    <div class="steps">
+      <span class="step"><em>0</em>Le stack</span><span class="arrow">→</span>
+      <span class="step"><em>1</em>Je regarde</span><span class="arrow">→</span>
+      <span class="step"><em>2</em>Cut 1</span><span class="arrow">→</span>
+      <span class="step"><em>3</em>Changement de direction</span><span class="arrow">→</span>
+      <span class="step"><em>4</em>Cut 2</span><span class="arrow">→</span>
+      <span class="step"><em>5</em>Zone de réception</span><span class="arrow">→</span>
+      <span class="step"><em>6</em>Recyclage</span>
+    </div>
+    <p style="margin-bottom:0">Le club a passé <strong>six séances</strong> sur ce seul geste. Ce n'est pas trop : c'est ce qu'il faut pour qu'il rentre.</p>
+  </div>
+
+  <h3>La grille qui sert à découper n'importe quoi</h3>
+  <p>Elle s'appelle <strong>PPA</strong>, et elle s'applique à toute action de jeu.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Étape</th><th>La question</th><th>Sur le cut</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Prise d'information</strong></td><td>Qu'est-ce que je regarde&nbsp;?</td><td>Ma défense · le contact visuel avec le lanceur · la disponibilité du soutien · où sont les autres milieux</td></tr>
+        <tr><td><strong>Prise de décision</strong></td><td>Qu'est-ce que je choisis&nbsp;?</td><td>Cut 1&nbsp;? Cut 2&nbsp;? Quelle zone de réception&nbsp;? Comment je recycle&nbsp;?</td></tr>
+        <tr><td><strong>Action</strong></td><td>J'exécute</td><td>L'appel</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="keyline">Ce qu'on décompose, ce n'est pas le geste — c'est la boucle de décision.
+  <small>Un joueur qui rate son cut a rarement un problème de jambes. Il a un problème de regard ou de choix. Un coach qui ne connaît que « le geste » corrigera toujours la mauvaise chose.</small></p>
+
+  <h3>Le même découpage, en défense</h3>
+  <p>Le principe « avant / pendant / après » fonctionne des deux côtés du jeu. Côté défense, il se cale sur le compte&nbsp;:</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>5 sec avant</th><th>Le compte</th><th>5 sec après</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Position d'arrêt · prise d'info « moi vs mon joueur »</td>
+          <td>Mise en pression · placement du regard · mise en difficulté <strong>avant et après</strong> la réception</td>
+          <td>Maintenir son joueur · anticiper le give-and-go · le corps comme obstacle</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Un coach qui a compris ce découpage peut décomposer n'importe quel geste, y compris ceux qui ne sont pas dans ce document.</p>
+</section>
+
+<section id="seance">
+  <div class="lvl"><b>Niveau 3</b><span>La séance</span></div>
+  <h2>La trame, toujours la même</h2>
+  <p>Cinq blocs, dans cet ordre. Elle ne change pas d'une semaine à l'autre — c'est justement ce qui permet aux joueurs de se concentrer sur le contenu au lieu de la forme.</p>
+
+  <div class="trame">
+    <div class="pair">
+      <div class="slot s-theme">
+        <h5>Thème</h5>
+        <p>La phase du mois que tu travailles ce soir.</p>
+      </div>
+      <div class="slot s-lex">
+        <h5>Lexique</h5>
+        <p>Les 3 ou 4 mots que tu vas employer.</p>
+      </div>
+    </div>
+    <div class="slot s-echauf">
+      <h5>Échauffement</h5>
+      <p>1. Gamme de passe &nbsp;·&nbsp; 2. Partie physique ou dynamique &nbsp;·&nbsp; 3. Un jeu</p>
+    </div>
+    <div class="pair">
+      <div class="slot s-exo">
+        <h5>Exercice 1</h5>
+        <p>Objectif · critère de réussite · variables + / −</p>
+      </div>
+      <div class="slot s-exo">
+        <h5>Exercice 2</h5>
+        <p>Objectif · critère de réussite · variables + / −</p>
+      </div>
+    </div>
+    <div class="slot s-match">
+      <h5>Match à thème</h5>
+      <p>Une contrainte, et un système de points qui récompense ce qu'on a travaillé.</p>
+    </div>
+  </div>
+
+  <p class="keyline">Le lexique s'écrit <em>avant</em> la séance, pas pendant.
+  <small>C'est la seule chose qui demande un vrai effort d'anticipation, et c'est celle qui change le plus de choses. Trois mots décidés à l'avance valent mieux que vingt improvisés au bord du terrain.</small></p>
+
+  <h3>Un seul détail par séance</h3>
+  <p>Une séance ne traite pas un thème. Elle traite <strong>un détail d'une phase</strong> d'un thème. Si tu ne peux pas résumer ta séance en une phrase, elle en contient trop.</p>
+
+  <h3>Réutilise le même exercice</h3>
+  <p>C'est le réflexe le plus contre-intuitif quand on débute : on croit qu'il faut varier pour ne pas ennuyer. C'est l'inverse.</p>
+  <p>Quand les joueurs connaissent déjà l'exercice, <strong>ils n'ont plus à réfléchir à ce qu'ils doivent faire</strong> — toute leur attention va au détail que tu travailles. Un exercice neuf coûte dix minutes d'explication et disperse tout le monde.</p>
+  <p>La Flèche, le Sapin, l'Arbre sortent des dizaines de fois dans l'année. À chaque fois avec un point d'attention différent.</p>
+
+  <div class="card">
+    <span class="tag t-ink">Et par mauvais temps</span>
+    <p style="margin-bottom:0">Froid ou pluie&nbsp;: <strong>peu d'arrêts, peu d'explications, des exercices déjà connus.</strong> Et prévois moins de monde — les gens viennent moins. Une séance d'hiver n'est pas une séance de septembre au ralenti, c'est une séance construite autrement.</p>
+  </div>
+</section>
+
+<section id="exercice">
+  <h2>Un exercice a une forme</h2>
+  <p class="lede">Chaque case compte. Si l'une d'elles est vide, l'exercice n'est pas prêt — et c'est presque toujours le critère de réussite qui manque.</p>
+
+  <div class="fiche">
+    <div class="fiche-row r3">
+      <div class="cell c-ink"><h6>Nb joueurs</h6><p>Et ce qu'on fait s'il en manque, ou s'il y en a le double.</p></div>
+      <div class="cell c-ink"><h6>Matériel</h6><p>Plots, disques, chasubles. Compté avant, pas cherché pendant.</p></div>
+      <div class="cell c-ink"><h6>Durée</h6><p>Une fourchette suffit.</p></div>
+    </div>
+    <div class="fiche-row r2">
+      <div class="cell c-blue"><h6>Objectif</h6><p>Ce que le joueur doit apprendre. <strong>Une phrase.</strong> Pas « travailler le cut » — mais « prendre l'information avant de partir ».</p></div>
+      <div class="cell c-blue"><h6>Critère de réussite</h6><p>Ce que le joueur peut <strong>vérifier lui-même, sans toi</strong>. C'est la case la plus difficile et la plus utile.</p></div>
+    </div>
+    <div class="fiche-row r1">
+      <div class="cell c-violet"><h6>Déroulement</h6><p>Qui se place où, qui part quand, ce qui déclenche. Assez précis pour qu'un autre coach puisse l'animer à ta place.</p></div>
+    </div>
+    <div class="fiche-row r2">
+      <div class="cell c-green"><h6>Variable (+)</h6><p>Ce qui complique, pour ceux qui ont déjà compris.</p></div>
+      <div class="cell c-red"><h6>Variable (−)</h6><p>Ce qui simplifie, pour ceux qui ont besoin de temps.</p></div>
+    </div>
+  </div>
+
+  <h3>Le critère de réussite : trois formes qui marchent</h3>
+
+  <h4>1. Observable</h4>
+  <p>Quelque chose qui se voit à l'œil nu. <em>« Le départ se fait uniquement quand la passe précédente est lâchée. »</em> <em>« Reçu au buste, le receveur ne bouge pas. »</em></p>
+
+  <h4>2. Chiffré — le score enseigne à ta place</h4>
+  <p>C'est le meilleur outil quand on ne sait pas quoi dire. Tu ne répètes plus « ne perdez pas le disque » : le barème le dit pour toi.</p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Barème</th><th>Ce qu'il installe</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">0 turnover = 3 pts · 1 = 2 · 2 = 0 · 3+ = 2 pts pour l'adverse</td><td>Soigner la conservation</td></tr>
+        <tr><td class="mono">Passage fermé = 2 pts · ouvert = 1 pt · turn = −2</td><td>Oser le côté difficile</td></tr>
+        <tr><td class="mono">Déf : dissuade = 1 pt · intercepte = 2 pts</td><td>Défendre activement, pas subir</td></tr>
+        <tr><td class="mono">Handler → M1 → M2 = 2 pts · repli sur le soutien = 0</td><td>Imposer un ordre de circulation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>3. Temporel</h4>
+  <p>Le compte à 10 découpé&nbsp;: <span class="mono">1→5</span> le milieu, <span class="mono">5→7</span> l'espace ouvert ou le dégagement, <span class="mono">6→10</span> le soutien.</p>
+
+  <h3>Faire vivre l'exercice — la seule progression à retenir</h3>
+  <div class="steps">
+    <span class="step"><em>1</em>Pas de consigne</span><span class="arrow">→</span>
+    <span class="step"><em>2</em>Une consigne</span><span class="arrow">→</span>
+    <span class="step"><em>3</em>Avec défense</span><span class="arrow">→</span>
+    <span class="step"><em>4</em>En compétition</span>
+  </div>
+  <p>Et souvent, en amont&nbsp;: <strong>sans disque d'abord</strong>. Pour un débutant, le disque monopolise toute l'attention — l'enlever ne retire rien, ça isole ce que tu veux travailler.</p>
+  <p>Avec ces quatre paliers, un seul exercice tient trente minutes et convient à tout le monde.</p>
+</section>
+
+<section id="mots">
+  <h2>Les mots comptent autant que les gestes</h2>
+  <p class="lede">Si toi tu dis « appui » et que l'autre coach dit « pivot », le joueur est perdu. Le vocabulaire commun n'est pas un détail de confort : c'est ce qui rend l'enseignement cumulable d'une séance à l'autre.</p>
+
+  <h3>Deux règles</h3>
+  <p><strong>Un mot qui fait image se retient et se crie.</strong> « Abaisse ton centre de gravité » ne se hurle pas depuis le bord du terrain. « Position de crabe », si.</p>
+  <p><strong>Le lexique de la séance s'écrit avant la séance.</strong> Trois ou quatre mots, notés en haut de ta feuille. Tu t'y tiens, et les joueurs les entendent assez pour qu'ils rentrent.</p>
+
+  <h3>Le modèle à copier</h3>
+  <p>Il n'existe qu'un seul cue moteur complet dans la méthode du club. Il concerne le changement de direction, et c'est le format à reproduire pour tous les autres gestes.</p>
+
+  <div class="cue">
+    <p class="cue-line">« J'arrive, petit pas, je plante, je tourne et pousse&nbsp;! »</p>
+    <dl class="cue-grid">
+      <dt>J'arrive</dt><dd>Je baisse mon centre de gravité en approchant du point de rupture</dd>
+      <dt>Petit pas</dt><dd>Je raccourcis ma foulée pour pouvoir m'ancrer</dd>
+      <dt>Je plante</dt><dd>J'ancre les deux appuis — dos droit</dd>
+      <dt>Je tourne</dt><dd>Le pied intérieur pivote, la hanche entraîne le corps, les bras suivent</dd>
+      <dt>et pousse&nbsp;!</dt><dd>Je propulse le corps entier avec le pied intérieur</dd>
+    </dl>
+  </div>
+
+  <p><strong>Pourquoi ce format fonctionne&nbsp;:</strong> il est rythmé, il est à la première personne, chaque mot est une action unique, et il se crie depuis le bord du terrain pendant que le joueur court. Un cue qui ne remplit pas ces quatre conditions n'en est pas un.</p>
+
+  <h3>Le lexique du club</h3>
+  <p>Les termes marqués d'un trait orange sont ceux qui font image — ceux qui se crient.</p>
+
+  <div class="glos">
+    <dl class="term"><dt>PPA</dt><dd>Prise d'information → Prise de décision → Action</dd></dl>
+    <dl class="term"><dt>Appel</dt><dd>Cut 1 + changement de direction + cut 2 + zone de réception</dd></dl>
+    <dl class="term"><dt>Stack</dt><dd>Zone de repos <em>et</em> de prise d'info. Pas une file d'attente</dd></dl>
+    <dl class="term"><dt>Recyclage</dt><dd>Se replacer après l'appel. Quand tu recycles, tu regardes le handler</dd></dl>
+    <dl class="term"><dt>Départ à (−1)</dt><dd>Le milieu part avant la réception, il n'attend pas</dd></dl>
+    <dl class="term imaged"><dt>Swing</dt><dd>Circulation latérale — « Et 1&nbsp;! Et 2&nbsp;! Et 3&nbsp;! »</dd></dl>
+    <dl class="term imaged"><dt>Patate chaude</dt><dd>Disque arrêté = défense qui s'organise. Ne le garde pas</dd></dl>
+    <dl class="term imaged"><dt>Bise à Mathilde</dt><dd>Le soutien part vers le porteur pour mettre la défense sur ses talons, puis revient</dd></dl>
+    <dl class="term imaged"><dt>Courbe qui s'épouse</dt><dd>La trajectoire de la passe épouse la course du receveur</dd></dl>
+    <dl class="term imaged"><dt>Triangle de vision</dt><dd>Joueur / disque / zone — en voir au moins deux sur trois</dd></dl>
+    <dl class="term imaged"><dt>Disque = lumière</dt><dd>L'image pour placer son regard en défense</dd></dl>
+    <dl class="term imaged"><dt>Position de crabe</dt><dd>Sur le lanceur : bas, mobile, main devant le disque</dd></dl>
+    <dl class="term imaged"><dt>Grand goéland</dt><dd>Se grandir au maximum sur le lanceur, pour l'envergure</dd></dl>
+    <dl class="term imaged"><dt>Porte placard</dt><dd>Défense orientée : épaule au thorax, on ne tourne pas autour</dd></dl>
+    <dl class="term imaged"><dt>Les chiens</dt><dd>Le 1er rideau de la zone : 3 défenseurs à plat</dd></dl>
+    <dl class="term imaged"><dt>Le phare</dt><dd>Le 2e rideau : il gère la zone de lumière et la zone d'ombre</dd></dl>
+    <dl class="term imaged"><dt>Les pistons</dt><dd>Les zones de réception du milieu contre une zone : piston gauche, piston droit, et la zone de crash</dd></dl>
+    <dl class="term imaged"><dt>Le cavalier</dt><dd>Le handler change de couloir pour casser l'organisation de la zone adverse</dd></dl>
+    <dl class="term"><dt>Pied de pivot défensif</dt><dd>Un peu devant, sur un côté — ferme 50 % du terrain</dd></dl>
+    <dl class="term"><dt>Switch</dt><dd>Deux défenseurs échangent leurs vis-à-vis. Contact visuel obligatoire</dd></dl>
+  </div>
+</section>
+
+<section id="terrain">
+  <h2>Le jour J, sur le terrain</h2>
+  <p class="lede">Deux inconnues à chaque séance : combien ils sont, et à quel point leurs niveaux s'écartent. Les deux se règlent avec le même réflexe — adapter en continu, avec des outils préparés à l'avance.</p>
+
+  <h3>Des niveaux qui s'écartent</h3>
+  <p><strong>On ne sépare pas le groupe.</strong> On règle l'exigence avec <strong>la variable + et la variable −</strong> — les deux cases que tu as déjà remplies sur ta fiche d'exercice.</p>
+  <p>C'est là qu'elles servent vraiment. La variable − pour ceux qui ont besoin de temps, la variable + pour ceux qui ont déjà compris — <strong>sur le même exercice, en même temps, sans rien annoncer.</strong></p>
+
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Le levier</th><th>Variable (−)</th><th>Variable (+)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>L'espace</strong></td><td>Agrandir la zone</td><td>La réduire</td></tr>
+        <tr><td><strong>Le temps</strong></td><td>Laisser un temps d'arrêt avant de lancer</td><td>Diminuer le compte</td></tr>
+        <tr><td><strong>Les repères</strong></td><td>Garder les plots qui guident</td><td>Les enlever</td></tr>
+        <tr><td><strong>La défense</strong></td><td>Sans défense, puis un défenseur passif</td><td>Défenseur actif, puis doubler</td></tr>
+        <tr><td><strong>Le départ</strong></td><td>Face au jeu</td><td>De dos — il faut se retourner pour lire</td></tr>
+        <tr><td><strong>La technique</strong></td><td>Un seul type de lancer</td><td>Imposer le côté difficile</td></tr>
+        <tr><td><strong>L'enchaînement</strong></td><td>Une seule entrée</td><td>Deux entrées, ou la longue à la fin</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="keyline">Deux joueurs peuvent faire le même exercice avec deux exigences différentes sans que personne ne le remarque.
+  <small>Personne n'est étiqueté, personne n'attend son tour ailleurs, et le groupe reste entier.</small></p>
+
+  <p class="keyline">Et quand il y a plusieurs ateliers de difficultés différentes : chacun évalue le niveau global, puis se positionne lui-même.
+  <small>Tu n'as personne à trier, et personne n'est étiqueté. Les joueurs se répartissent mieux que tu ne le ferais.</small></p>
+
+  <p>La séparation réelle ne sert que sur le <strong>match</strong>, pour les vrais débutants : 2v2 ou 3v3, deux petites zones sans limite de terrain, peu de consignes.</p>
+
+  <h3>Un effectif inconnu</h3>
+  <p>Ce n'est pas un cas particulier à gérer&nbsp;: <strong>adapter, c'est la base de l'animation.</strong> Tu ne sauras jamais combien ils sont avant d'arriver. Donc tu ne prépares pas une séance calibrée — tu prépares un contenu <strong>que tu sais découper</strong>.</p>
+
+  <p>Le levier principal, c'est de <strong>scinder</strong>. Selon le nombre de présents, le même contenu tourne sur un seul exercice, ou sur deux ou trois en parallèle.</p>
+
+  <div class="card">
+    <span class="tag t-green">Le seul curseur à surveiller</span>
+    <p>Assez de <strong>temps de jeu</strong> pour que ça serve à quelque chose. Assez de <strong>repos</strong> si l'intensité le demande. Mais <strong>jamais assez d'attente</strong> pour qu'ils s'ennuient — ou qu'ils se refroidissent.</p>
+    <p style="margin-bottom:0">Trop de monde sur un seul exercice, c'est une file d'attente. Et une file d'attente, c'est un groupe qui décroche et qui a froid.</p>
+  </div>
+
+  <p class="keyline">Toujours avoir plein de plots.
+  <small>Un plot de plus, c'est une file d'attente en moins. C'est le matériel qui te permet de scinder sans y avoir réfléchi à l'avance.</small></p>
+
+  <h4>Les autres leviers</h4>
+  <ul>
+    <li><strong>Le nombre et la taille des terrains</strong> — des terrains de tailles différentes, c'est aussi de l'hétérogénéité gérée sans trier : le petit est plus dur.</li>
+    <li><strong>La rotation</strong> — rotation des postes, montantes / descendantes, « je gagne je monte, j'ai perdu je reste ». Les joueurs se répartissent d'eux-mêmes par niveau.</li>
+    <li><strong>Le format du bloc</strong> — un circuit d'ateliers où l'on tourne, ou un circuit de contraintes en deux équipes.</li>
+  </ul>
+
+  <h3>Neuf réflexes qui font gagner du temps</h3>
+  <ul>
+    <li><strong>Quand un concept est abstrait, pose-le au sol.</strong> Quatre disques marquent l'espace créé par les pivots, et ce qui était théorique devient visible.</li>
+    <li><strong>Fais ressentir avant d'expliquer.</strong> On commence en marchant : le joueur n'a rien à réussir, il doit sentir.</li>
+    <li><strong>Mets-toi à l'endroit du geste.</strong> Pour valider une rotation, place-toi au point de rupture. Ne commente pas depuis le bord.</li>
+    <li><strong>Utilise un déclencheur externe.</strong> Un clap, un « top », une couleur annoncée. Le joueur ne part plus quand il veut : l'exercice force la prise d'info au lieu de la demander.</li>
+    <li><strong>Fais-les se corriger entre eux.</strong> Trois points maximum — pied de pivot, dos droit, courbe. Tu n'es plus le seul œil du terrain.</li>
+    <li><strong>Annonce les rôles avant de jouer.</strong> Personne n'entre sur le terrain sans savoir ce qu'il y fait.</li>
+    <li><strong>Communication positive uniquement.</strong> La frustration se dit au coach, pas au joueur. Après un turnover : pas de commentaire, on défend.</li>
+    <li><strong>Délègue l'échauffement.</strong> Un joueur le mène, tu observes le groupe.</li>
+    <li><strong>Habille l'exercice en jeu.</strong> Master Mind, Petits Chevaux, Morpion. Le contenu reste technique, mais les adultes arrêtent de se juger.</li>
+  </ul>
+</section>
+
+<section id="repertoire">
+  <h2>Le répertoire du club</h2>
+  <p class="lede">Tu n'as pas à inventer. Ces exercices reviennent toute l'année — connais-en cinq, et tu tiens une saison.</p>
+
+  <div class="rep">
+    <div class="rep-group">
+      <h5>Échauffement</h5>
+      <div class="rep-item"><b>Gamme de passe</b><span>Revers, coup droit, courbe, au-dessus. Varie le pied de pivot et la hauteur</span></div>
+      <div class="rep-item"><b>Fontaine</b><span>Passes en circuit continu, à 50 % / 70 % / 90 % / tipping</span></div>
+      <div class="rep-item"><b>Demo BOISS</b><span>Quatre disques au sol pour rendre visible l'espace créé par les pivots</span></div>
+      <div class="rep-item"><b>Le T en relais</b><span>Toucher chaque plot et revenir à la base. Cardio et changements de direction</span></div>
+      <div class="rep-item"><b>Jeu des 4 zones</b><span>Le terrain découpé, on progresse zone par zone. S'adapte à n'importe quel effectif</span></div>
+    </div>
+
+    <div class="rep-group">
+      <h5>Les jeux — de la technique déguisée</h5>
+      <div class="rep-item"><b>Master Mind</b><span>Retrouver une combinaison cachée. Prise d'info et mémoire visuelle</span></div>
+      <div class="rep-item"><b>Les Petits Chevaux</b><span>Une liste de tâches fait avancer des chevaux. Physique et technique, en compétition</span></div>
+      <div class="rep-item"><b>Morpion</b><span>Chaque joueur a une couleur ; on lève celle qui part</span></div>
+      <div class="rep-item"><b>Iron Man</b><span>Défenseurs fixés dans une zone. Trop dur ? On agrandit la zone</span></div>
+      <div class="rep-item"><b>Frisbee lumière</b><span>Le disque éclaire — on place son regard par rapport à lui</span></div>
+    </div>
+
+    <div class="rep-group">
+      <h5>Attaque</h5>
+      <div class="rep-item"><b>La Flèche</b><span>L'exercice pivot du club. Des plots matérialisent cut 1, cut 2 et l'appel</span></div>
+      <div class="rep-item"><b>Le Sapin</b><span>Sur la longueur. Timing de départ imposé par le joueur précédent</span></div>
+      <div class="rep-item"><b>L'Arbre</b><span>Le PPA en entier, puis l'enchaînement au joueur suivant</span></div>
+      <div class="rep-item"><b>Conti de Royan</b><span>Continuité et give and go</span></div>
+      <div class="rep-item"><b>Passe à 10</b><span>Version prise d'info : l'équipe adverse lève des plots, il faut redonner la combinaison</span></div>
+      <div class="rep-item"><b>Le Cavalier</b><span>Remontée de terrain quand la zone bloque, ou par grand vent</span></div>
+    </div>
+
+    <div class="rep-group">
+      <h5>Défense</h5>
+      <div class="rep-item"><b>Ressenti</b><span>Suivre un cut en marchant, puis en courant. Apprendre à lire son opposant</span></div>
+      <div class="rep-item"><b>5 sec avant / après</b><span>Le découpage du compte, mis en situation</span></div>
+      <div class="rep-item"><b>La Clam</b><span>Jeu de chat par zones. Accompagner, gêner, relayer</span></div>
+      <div class="rep-item"><b>Duel annoncé</b><span>Le handler annonce un numéro. La défense marque des points, elle ne subit plus</span></div>
+    </div>
+
+    <div class="rep-group">
+      <h5>Contraintes de match</h5>
+      <div class="rep-item"><b>Le disque</b><span>Contre-attaque interdite · départ sur décompte · pas de compte · 2 passes max pour marquer</span></div>
+      <div class="rep-item"><b>Les joueurs</b><span>Lanceur imposé · binôme handler-milieu · 3 passes avant une longue</span></div>
+      <div class="rep-item"><b>Le format</b><span>Montantes / descendantes · situation arrêtée qui démarre en stack</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="memo">
+  <h2>Le mémo</h2>
+  <p class="lede">Ce qui tient sur une feuille, et ce que tu peux emmener mardi.</p>
+
+  <div class="memo">
+    <h3>Avant la séance</h3>
+    <div class="memo-grid">
+      <div>
+        <h5>Je décide</h5>
+        <ul>
+          <li>Quelle <strong>phase</strong> du thème du mois</li>
+          <li>Quel <strong>détail</strong> précis, en une phrase</li>
+          <li>Mes <strong>3 mots</strong> de lexique</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Je prépare</h5>
+        <ul>
+          <li>Un exercice <strong>qu'ils connaissent déjà</strong></li>
+          <li>Son <strong>critère de réussite</strong> observable</li>
+          <li>Une <strong>variable +</strong> et une <strong>variable −</strong></li>
+          <li>De quoi <strong>scinder</strong> si on est nombreux</li>
+          <li><strong>Plein de plots</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:30px">Pendant la séance</h3>
+    <div class="memo-grid">
+      <div>
+        <h5>Je fais vivre</h5>
+        <ul>
+          <li>Pas de consigne → une consigne → avec défense → en compétition</li>
+          <li>Variable + et variable − sur le même exercice, pas deux groupes</li>
+          <li>Je scinde dès que ça attend</li>
+          <li>Le score dit ce que je n'ai pas à répéter</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Je surveille</h5>
+        <ul>
+          <li>Est-ce qu'ils <strong>regardent</strong> avant de partir&nbsp;?</li>
+          <li>Est-ce qu'ils <strong>se replacent</strong> après&nbsp;?</li>
+          <li>Est-ce que j'emploie <strong>mes trois mots</strong>&nbsp;?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p class="keyline">Si tu ne retiens qu'une chose : décide ton détail et ton critère de réussite avant d'arriver.
+  <small>Tout le reste — l'exercice, les variables, le format — se choisit sur place et se rattrape. Ces deux-là, non.</small></p>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Document de référence des entraîneurs du club. Il accompagne l'archive des séances&nbsp;: chaque thème, chaque phase et chaque exercice cité ici y est détaillé.</p>
+  <p>Les erreurs classiques et leurs corrections sont à compléter au fil des séances.</p>
+</footer>
