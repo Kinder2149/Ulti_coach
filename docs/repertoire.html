@@ -1,0 +1,291 @@
+<title>Répertoire du club</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%A5%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --paper:#F6F7F5; --surface:#FFFFFF; --surface-2:#EFF1EE;
+  --ink:#141A1F; --ink-soft:#4E5A62; --ink-faint:#7C8890;
+  --rule:#DCE0DC; --rule-strong:#C3C9C3;
+  --accent:#1B3A8F; --accent-soft:#E7ECF8;
+  --marker:#C9541A; --marker-soft:#FBEBE0;
+  --plot-warm:#B57A0B; --plot-warm-bg:#FAF0D9;
+  --plot-blue:#1F5D9E; --plot-blue-bg:#E4EFF9;
+  --plot-violet:#5F3F94; --plot-violet-bg:#EDE7F8;
+  --plot-green:#26694A; --plot-green-bg:#E0F0E7;
+  --plot-red:#A9342A; --plot-red-bg:#FAE5E2;
+  --shadow:0 1px 2px rgba(20,26,31,.05),0 8px 24px -12px rgba(20,26,31,.18);
+  --maxw:74ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+    --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+    --rule:#2A333B; --rule-strong:#3B4650;
+    --accent:#89A9EC; --accent-soft:#1A2440;
+    --marker:#F08B51; --marker-soft:#301C11;
+    --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+    --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+    --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+    --plot-green:#63BE93; --plot-green-bg:#12271D;
+    --plot-red:#E4796C; --plot-red-bg:#2E1614;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+  --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+  --rule:#2A333B; --rule-strong:#3B4650;
+  --accent:#89A9EC; --accent-soft:#1A2440;
+  --marker:#F08B51; --marker-soft:#301C11;
+  --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+  --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+  --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+  --plot-green:#63BE93; --plot-green-bg:#12271D;
+  --plot-red:#E4796C; --plot-red-bg:#2E1614;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-size:18px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* bandeau navigation du site */
+.sitebar{display:flex;align-items:center;gap:2px;flex-wrap:wrap;padding:8px 16px;background:var(--ink);font-family:"Archivo",system-ui,sans-serif}
+.sitebar a{color:var(--paper);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.02em;padding:6px 11px;border-radius:5px;white-space:nowrap;opacity:.82}
+.sitebar a:hover{opacity:1;background:rgba(255,255,255,.12)}
+.sitebar a.home{opacity:1;font-weight:800}
+.sitebar a[aria-current="page"]{opacity:1;color:var(--marker)}
+
+/* header */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--rule) 27px 28px),var(--surface);
+  padding:52px 0 36px;
+}
+.masthead .wrap{display:flex;flex-direction:column;gap:16px}
+.eyebrow{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--marker);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule-strong)}
+h1{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(2.4rem,7vw,3.6rem);font-weight:800;line-height:.98;
+  letter-spacing:-.03em;margin:0;text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--accent)}
+.standfirst{font-size:1.18rem;line-height:1.5;color:var(--ink-soft);max-width:54ch;margin:0}
+
+/* recherche */
+.search{position:sticky;top:0;z-index:15;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.search .wrap{padding-top:14px;padding-bottom:14px}
+.search input{
+  width:100%;font-family:"Archivo",system-ui,sans-serif;font-size:1rem;
+  padding:12px 16px;border:1.5px solid var(--rule-strong);border-radius:8px;
+  background:var(--surface);color:var(--ink);
+}
+.search input::placeholder{color:var(--ink-faint)}
+.search input:focus-visible{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.search .count{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--ink-faint);margin-top:8px;display:block}
+
+main{padding:26px 0 40px}
+.rep-group{margin-bottom:30px}
+.rep-group > h2{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.8rem;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--marker);
+  margin:0 0 4px;padding-bottom:7px;border-bottom:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+}
+.rep-group > h2 .n{color:var(--ink-faint);font-weight:600;font-size:.9em}
+.rep-group > p.intro{font-size:.94rem;color:var(--ink-soft);margin:8px 0 14px}
+
+.rep-item{
+  display:grid;grid-template-columns:minmax(130px,180px) 1fr;gap:4px 20px;
+  padding:12px 0;border-bottom:1px dotted var(--rule);
+}
+.rep-item:last-child{border-bottom:0}
+.rep-item .nm{font-family:"Archivo",system-ui,sans-serif;font-size:1rem;font-weight:700;line-height:1.2}
+.rep-item .bd{margin:0}
+.rep-item .what{font-size:.95rem;color:var(--ink-soft);margin:0 0 5px}
+.rep-item .for{
+  display:inline-block;font-family:"Archivo",system-ui,sans-serif;
+  font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:2px 8px;border-radius:3px;background:var(--surface-2);color:var(--ink-soft);
+}
+.rep-item .for.v{background:var(--plot-green-bg);color:var(--plot-green)}
+@media(max-width:560px){.rep-item{grid-template-columns:1fr;gap:3px}}
+
+.empty{text-align:center;color:var(--ink-faint);font-style:italic;padding:40px 0}
+
+.progress{
+  background:var(--accent-soft);border:1px solid var(--rule);border-radius:6px;
+  padding:20px 22px;margin:10px 0 0;
+}
+.progress h3{font-family:"Archivo",system-ui,sans-serif;font-size:1.05rem;margin:0 0 12px}
+.steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:"Archivo",system-ui,sans-serif}
+.step{background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:7px 15px;font-size:.85rem;font-weight:600}
+.step em{font-style:normal;color:var(--ink-faint);font-family:"IBM Plex Mono",monospace;font-size:.8em;margin-right:6px}
+.arrow{color:var(--ink-faint)}
+
+footer{padding:40px 0 66px;color:var(--ink-faint);font-size:.85rem;border-top:1px solid var(--rule);margin-top:20px}
+footer a{color:var(--accent)}
+
+@page{size:A4 portrait;margin:14mm 13mm}
+@media print{
+  .sitebar,.search{display:none}
+  body{font-size:10.5pt;background:#fff;color:#000}
+  .rep-group{page-break-inside:avoid}
+}
+</style>
+
+<nav class="sitebar" aria-label="Navigation du site">
+  <a class="home" href="index.html">🥏 Accueil</a>
+  <a href="fil-rouge.html">Fil rouge</a>
+  <a href="diaporama.html">Diaporama</a>
+  <a href="conducteur.html">Conducteur</a>
+  <a href="fiches.html">Fiches</a>
+  <a href="repertoire.html" aria-current="page">Répertoire</a>
+  <a href="lexique.html">Lexique</a>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Boîte à outils du coach</div>
+    <h1>Le répertoire <em>du club</em></h1>
+    <p class="standfirst">Tous les exercices qui reviennent dans l'année, au même endroit. Tu n'as pas à inventer — connais-en cinq, et tu tiens une saison.</p>
+  </div>
+</header>
+
+<div class="search">
+  <div class="wrap">
+    <input id="q" type="search" placeholder="Chercher un exercice, une phase, un objectif…  (ex. « cut », « défense », « prise d'info »)" aria-label="Rechercher dans le répertoire" autocomplete="off">
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="rep-group">
+    <h2>Échauffement — sans disque <span class="n">5</span></h2>
+    <div class="rep-item"><div class="nm">Réveil musculaire</div><div class="bd"><p class="what">Au sol : mode prière · dos creux / dos rond · craquage du dos · papillon · marche pointe de pied · crabe au sol · escargot puis pompe.</p><span class="for">Démarrer en douceur, en marchant</span></div></div>
+    <div class="rep-item"><div class="nm">Gamme dynamique</div><div class="bd"><p class="what">Montée de genoux, talons-fesses, pas chassés, ouverture/fermeture, scorpion, escargot, pas de géant.</p><span class="for">Le classique, délégable à un joueur</span></div></div>
+    <div class="rep-item"><div class="nm">Le T en relais</div><div class="bd"><p class="what">Toucher chaque plot et revenir à la base.</p><span class="for">Cardio + changements de direction</span></div></div>
+    <div class="rep-item"><div class="nm">Pliométrie</div><div class="bd"><p class="what">Bond pieds joints, le plus haut, sur le côté, sur le pied fort.</p><span class="for">Puissance d'appui — la base du cut</span></div></div>
+    <div class="rep-item"><div class="nm">Zig-zag</div><div class="bd"><p class="what">Déplacement sur le terrain en position de défense, tout du long, rotation des hanches.</p><span class="for">Position de crabe en mouvement</span></div></div>
+  </section>
+
+  <section class="rep-group">
+    <h2>Échauffement — avec disque <span class="n">6</span></h2>
+    <div class="rep-item"><div class="nm">Gamme de passe</div><div class="bd"><p class="what">Revers / coup droit / courbe / au-dessus. Variantes : varier le pied de pivot, la hauteur.</p><span class="for">Le rituel d'entrée, tous niveaux</span></div></div>
+    <div class="rep-item"><div class="nm">Fontaine</div><div class="bd"><p class="what">Passes en circuit continu, à 50 % / 70 % / 90 % / tipping.</p><span class="for">Monter l'intensité sur le même geste</span></div></div>
+    <div class="rep-item"><div class="nm">Face à face</div><div class="bd"><p class="what">5 m : petit jeu j'attrape je lance (back/side) · 10 m : j'ai une défense, je bouge, je cours · 20 m : un cut.</p><span class="for">Progression par la distance</span></div></div>
+    <div class="rep-item"><div class="nm">Demo BOISS</div><div class="bd"><p class="what">4 disques au sol pour montrer l'espace créé par les pivots — petits puis grands.</p><span class="for">Matérialiser l'abstrait</span></div></div>
+    <div class="rep-item"><div class="nm">Boussole</div><div class="bd"><p class="what">3 niveaux de passe side / back.</p><span class="for">Le vocabulaire des côtés</span></div></div>
+    <div class="rep-item"><div class="nm">Jeu des 3 / 4 zones</div><div class="bd"><p class="what">Le terrain découpé en zones, on progresse zone par zone.</p><span class="for">Prise d'info + occupation de l'espace</span></div></div>
+  </section>
+
+  <section class="rep-group">
+    <h2>Les jeux — technique déguisée <span class="n">6</span></h2>
+    <div class="rep-item"><div class="nm">Master Mind</div><div class="bd"><p class="what">Une solution cachée de 3 disques / plots colorés, l'équipe doit la retrouver.</p><span class="for">Prise d'info + mémoire visuelle</span></div></div>
+    <div class="rep-item"><div class="nm">Les Petits Chevaux</div><div class="bd"><p class="what">Liste de tâches (squat, revers à plat, coup droit à plat, jumping jack, passage en T, je donne / contre-cut, abdos, relais tipping). Chaque tâche fait avancer un cheval. Ramener 2 chevaux à la maison.</p><span class="for">Physique + technique, en compétition</span></div></div>
+    <div class="rep-item"><div class="nm">Morpion</div><div class="bd"><p class="what">Chaque joueur a une couleur ; le catch lève la couleur qui part.</p><span class="for">Prise d'info sous contrainte</span></div></div>
+    <div class="rep-item"><div class="nm">Iron Man</div><div class="bd"><p class="what">Défenseurs fixés dans une zone ; une équipe attaque, 3 ou 4 zones défendues autour. <b>V−</b> : agrandir la zone si c'est trop dur. <b>V+</b> : multiplier les attaquants.</p><span class="for v">Cardio + défense de zone · V+/V−</span></div></div>
+    <div class="rep-item"><div class="nm">Frisbee lumière</div><div class="bd"><p class="what">Le disque = la lumière, on place son regard par rapport à lui.</p><span class="for">Triangle de vision</span></div></div>
+    <div class="rep-item"><div class="nm">Disc en hauteur / Jeu à 3</div><div class="bd"><p class="what">Priorité défense.</p><span class="for">Position sur le porteur</span></div></div>
+  </section>
+
+  <section class="rep-group">
+    <h2>Attaque — le répertoire du cut <span class="n">8</span></h2>
+    <div class="rep-item"><div class="nm">La Flèche</div><div class="bd"><p class="what">Colonne face à J0. J1 part droit puis cut. J0 lance dans la continuité puis se déplace en face. Variante à 2 entrées. Plots pour visualiser cut 1 / cut 2 / appel.</p><span class="for">Le cut complet — l'exercice pivot du club</span></div></div>
+    <div class="rep-item"><div class="nm">Le Sapin</div><div class="bd"><p class="what">Sur la longueur complète. 5-6 plots max, 1 passage par personne pour capter derrière/devant. Variante : diviser la colonne D/G, chaque passage je monte de 1. <b>CR</b> : timing de départ cut 1 × cut 2 du milieu −1.</p><span class="for">Cut 1 / cut 2, timing</span></div></div>
+    <div class="rep-item"><div class="nm">L'Arbre</div><div class="bd"><p class="what">Le disque est à la base. Le milieu 1 prend l'info → cut 1 + cut 2 → passe → enchaînement du milieu 2. <b>V+</b> : cut derrière/devant distinct · timing (M2 part quand M1 a fini cut 1) · longue à la fin · le handler suit le disque.</p><span class="for v">PPA en entier, enchaînement · V+</span></div></div>
+    <div class="rep-item"><div class="nm">Conti de Royan</div><div class="bd"><p class="what">Enchaînement de continuité. <b>V+</b> : ajouter un joueur au milieu dans la ligne droite. <b>V−</b> : ajouter un plot pour aller chercher le cut.</p><span class="for v">Continuité, give and go · V+/V−</span></div></div>
+    <div class="rep-item"><div class="nm">Passe à 10</div><div class="bd"><p class="what">Classique. Version 4 contre 4 : l'équipe 2 est autour du terrain et lève un plot différent à chaque passe, l'équipe 1 valide le point si elle redonne la combinaison. Astuce : avant je reçois, je regarde.</p><span class="for">Prise d'info sous pression</span></div></div>
+    <div class="rep-item"><div class="nm">Fleur</div><div class="bd"><p class="what">4 appels du centre vers l'intérieur, puis du centre vers l'extérieur.</p><span class="for">Coupes faciles</span></div></div>
+    <div class="rep-item"><div class="nm">Cavalier</div><div class="bd"><p class="what">3 colonnes. Le handling bouge : « je donne, je libère ma colonne ». Face à une zone trop bloquante, ou par grand vent.</p><span class="for">Remontée de terrain</span></div></div>
+    <div class="rep-item"><div class="nm">Émeraude</div><div class="bd"><p class="what">Zones de réception + switch de postes.</p><span class="for">Play collectif</span></div></div>
+  </section>
+
+  <section class="rep-group">
+    <h2>Défense <span class="n">6</span></h2>
+    <div class="rep-item"><div class="nm">Ressenti</div><div class="bd"><p class="what">Suivre un cut offensif en marchant puis en vraie course. Se concentrer sur : placement des hanches · le regard · ma position · le moment du cut · « quand est-ce que je m'engage ? ».</p><span class="for">Apprendre à lire son opposant</span></div></div>
+    <div class="rep-item"><div class="nm">Ressenti (+)</div><div class="bd"><p class="what">Une zone de plots pour ne pas anticiper. Cut avec changements de direction aléatoires pour faire travailler le défenseur.</p><span class="for v">Réaction pure · V+</span></div></div>
+    <div class="rep-item"><div class="nm">5 sec avant / après</div><div class="bd"><p class="what">Position → position complète → position. Moi vs déf : qui ? regard ? mise en difficulté ? lancé d'après ?</p><span class="for">Le découpage du compte</span></div></div>
+    <div class="rep-item"><div class="nm">La Clam</div><div class="bd"><p class="what">Défense d'enclenchement uniquement sur le stack. Encercler le stack pour bloquer les premières passes et les faciles. On accompagne le 1er cut, on gêne, puis on relaie au joueur +1. Communication ++.</p><span class="for">Défense collective</span></div></div>
+    <div class="rep-item"><div class="nm">Petit jeu de chat par zones</div><div class="bd"><p class="what">Les joueurs de stack font un appel en traversant au moins 2 zones ; les défenseurs interceptent celui qui arrive / suit / relaie.</p><span class="for">Switch, communication</span></div></div>
+    <div class="rep-item"><div class="nm">Duel Atq / Déf</div><div class="bd"><p class="what">Le milieu a un numéro, le handler annonce un numéro → duel. La déf a 4-6 tentatives. <b>1 pt si on dissuade · 2 pts si on intercepte · −1 si l'attaque marque dans l'ouvert.</b></p><span class="for v">Défense individuelle, en compétition</span></div></div>
+  </section>
+
+  <section class="rep-group">
+    <h2>Formats de match à thème <span class="n">7</span></h2>
+    <div class="rep-item"><div class="nm">Match à thème classique</div><div class="bd"><p class="what">Une contrainte + un système de points qui récompense ce qu'on a travaillé.</p><span class="for">Le format de base</span></div></div>
+    <div class="rep-item"><div class="nm">Situation arrêtée</div><div class="bd"><p class="what">Tout démarre en stack, sur jeu arrêté.</p><span class="for">Travailler l'enclenchement</span></div></div>
+    <div class="rep-item"><div class="nm">Montantes / descendantes</div><div class="bd"><p class="what">Équipes de 4-5, on monte ou on descend selon le score. Les joueurs se répartissent d'eux-mêmes par niveau.</p><span class="for">Gérer l'hétérogénéité</span></div></div>
+    <div class="rep-item"><div class="nm">Circuit d'ateliers</div><div class="bd"><p class="what">Par 2, on tourne toutes les X minutes.</p><span class="for">Effectif ≈ 10 présents</span></div></div>
+    <div class="rep-item"><div class="nm">Circuit de contraintes</div><div class="bd"><p class="what">Par 2, deux équipes A et D.</p><span class="for">Effectif ≈ 15 présents</span></div></div>
+    <div class="rep-item"><div class="nm">Format débutants</div><div class="bd"><p class="what">2v2 // 3v3, 2 petites zones sans limite de terrain, mini-match, peu fléché par le coach.</p><span class="for">Les vrais débutants</span></div></div>
+    <div class="rep-item"><div class="nm">Contraintes récurrentes</div><div class="bd"><p class="what">Contre-attaque interdite · départ uniquement sur un décompte · on reprend quand tout le monde est ok · 2 passes max pour marquer · 3 passes avant une longue · lanceur féminin · pas de compte.</p><span class="for">La règle du jeu enseigne à ta place</span></div></div>
+  </section>
+
+  <div class="progress">
+    <h3>Faire vivre n'importe quel exercice</h3>
+    <div class="steps">
+      <span class="step"><em>1</em>Pas de consigne</span><span class="arrow">→</span>
+      <span class="step"><em>2</em>Une consigne</span><span class="arrow">→</span>
+      <span class="step"><em>3</em>Avec défense</span><span class="arrow">→</span>
+      <span class="step"><em>4</em>En compétition</span>
+    </div>
+    <p style="margin:14px 0 0;font-size:.95rem;color:var(--ink-soft)">Et souvent, en amont : <strong>sans disque d'abord</strong>. Avec ces paliers, un seul exercice tient trente minutes et convient à tout le monde.</p>
+  </div>
+
+  <p class="empty" id="empty" hidden>Aucun exercice ne correspond à ta recherche.</p>
+
+</main>
+
+<footer class="wrap">
+  <p>Répertoire des entraîneurs du club · Ultimate frisbee. Le détail de chaque exercice (schéma, durée, matériel) se complète au fil des séances.</p>
+  <p>Chaque exercice ressort plusieurs fois dans l'année, avec un point d'attention différent. Voir aussi <a href="fil-rouge.html">le Fil Rouge</a> et <a href="lexique.html">le lexique</a>.</p>
+</footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.rep-item'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.rep-group'));
+  var total = items.length;
+
+  function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
+
+  function apply(){
+    var v = norm(q.value.trim());
+    var shown = 0;
+    items.forEach(function(it){
+      var match = !v || norm(it.textContent).indexOf(v) !== -1;
+      it.hidden = !match;
+      if(match) shown++;
+    });
+    groups.forEach(function(g){
+      var vis = g.querySelectorAll('.rep-item:not([hidden])').length > 0;
+      g.hidden = !vis;
+    });
+    empty.hidden = shown > 0;
+    count.textContent = v ? (shown + ' exercice' + (shown>1?'s':'') + ' sur ' + total) : (total + ' exercices dans le répertoire');
+  }
+
+  q.addEventListener('input', apply);
+  apply();
+})();
+</script>
