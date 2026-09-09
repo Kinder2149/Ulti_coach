@@ -1,0 +1,591 @@
+<title>Lexique Ultimate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --paper:#F6F7F5; --surface:#FFFFFF; --surface-2:#EFF1EE;
+  --ink:#141A1F; --ink-soft:#4E5A62; --ink-faint:#7C8890;
+  --rule:#DCE0DC; --rule-strong:#C3C9C3;
+  --accent:#1B3A8F; --accent-soft:#E7ECF8;
+  --marker:#C9541A; --marker-soft:#FBEBE0;
+  --plot-warm:#B57A0B; --plot-warm-bg:#FAF0D9;
+  --plot-blue:#1F5D9E; --plot-blue-bg:#E4EFF9;
+  --plot-violet:#5F3F94; --plot-violet-bg:#EDE7F8;
+  --plot-green:#26694A; --plot-green-bg:#E0F0E7;
+  --plot-red:#A9342A; --plot-red-bg:#FAE5E2;
+  --shadow:0 1px 2px rgba(20,26,31,.05),0 8px 24px -12px rgba(20,26,31,.18);
+  --maxw:74ch;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+    --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+    --rule:#2A333B; --rule-strong:#3B4650;
+    --accent:#89A9EC; --accent-soft:#1A2440;
+    --marker:#F08B51; --marker-soft:#301C11;
+    --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+    --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+    --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+    --plot-green:#63BE93; --plot-green-bg:#12271D;
+    --plot-red:#E4796C; --plot-red-bg:#2E1614;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11161A; --surface:#181E24; --surface-2:#1F262D;
+  --ink:#E9EBE8; --ink-soft:#A2ADB6; --ink-faint:#7B868E;
+  --rule:#2A333B; --rule-strong:#3B4650;
+  --accent:#89A9EC; --accent-soft:#1A2440;
+  --marker:#F08B51; --marker-soft:#301C11;
+  --plot-warm:#E0B44E; --plot-warm-bg:#2C2413;
+  --plot-blue:#6BA6E0; --plot-blue-bg:#122536;
+  --plot-violet:#A98BE0; --plot-violet-bg:#221934;
+  --plot-green:#63BE93; --plot-green-bg:#12271D;
+  --plot-red:#E4796C; --plot-red-bg:#2E1614;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-size:18px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+/* header */
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--rule) 27px 28px),var(--surface);
+  padding:64px 0 40px;
+}
+.masthead .wrap{display:flex;flex-direction:column;gap:18px}
+.eyebrow{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--marker);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule-strong)}
+h1{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(2.4rem,7vw,3.8rem);font-weight:800;line-height:.98;
+  letter-spacing:-.03em;margin:0;text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--accent)}
+.standfirst{font-size:1.2rem;line-height:1.5;color:var(--ink-soft);max-width:54ch;margin:0}
+.byline{
+  font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-faint);
+  letter-spacing:.04em;border-top:1px solid var(--rule);padding-top:14px;margin-top:4px;
+}
+
+/* nav */
+nav.toc{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);
+}
+nav.toc ol{
+  list-style:none;margin:0 auto;padding:0 22px;max-width:var(--maxw);
+  display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin;
+}
+nav.toc a{
+  display:block;white-space:nowrap;font-family:"Archivo",system-ui,sans-serif;
+  font-size:.74rem;font-weight:600;letter-spacing:.02em;color:var(--ink-soft);
+  text-decoration:none;padding:13px 10px;border-bottom:2px solid transparent;
+}
+nav.toc a:hover{color:var(--accent);border-bottom-color:var(--rule-strong)}
+
+section{padding:56px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+h2{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-size:clamp(1.6rem,4.4vw,2.3rem);font-weight:800;line-height:1.06;
+  letter-spacing:-.022em;margin:0 0 8px;text-wrap:balance;
+}
+h3{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--marker);
+  margin:34px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--rule);
+}
+p{margin:0 0 16px}
+a{color:var(--accent)}
+.lede{font-size:1.08rem;color:var(--ink-soft);max-width:58ch;margin-bottom:8px}
+
+/* hub liens */
+.hub{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+@media(max-width:620px){.hub{grid-template-columns:1fr}}
+.hubcard{
+  background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+  box-shadow:var(--shadow);padding:20px 22px;
+}
+.hubcard.old{border-top:4px solid var(--plot-warm)}
+.hubcard.new{border-top:4px solid var(--plot-blue)}
+.hubcard h4{
+  font-family:"Archivo",system-ui,sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:0 0 4px;
+}
+.hubcard.old h4{color:var(--plot-warm)}
+.hubcard.new h4{color:var(--plot-blue)}
+.hubcard .note{font-size:.86rem;color:var(--ink-faint);margin:0 0 14px}
+.linklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.linklist li{margin:0}
+.linklist a,.linklist span.dead{
+  display:block;padding:9px 0;border-bottom:1px dotted var(--rule);
+  font-family:"Archivo",system-ui,sans-serif;font-size:.95rem;font-weight:600;
+  text-decoration:none;
+}
+.linklist li:last-child a,.linklist li:last-child span.dead{border-bottom:0}
+.linklist a{color:var(--accent)}
+.linklist a:hover{color:var(--marker)}
+.linklist small{
+  display:block;font-family:"Newsreader",serif;font-weight:400;
+  font-size:.84rem;color:var(--ink-faint);margin-top:1px;
+}
+.linklist span.dead{color:var(--ink-soft)}
+
+/* legend */
+.legend{
+  display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;
+  background:var(--surface-2);border:1px solid var(--rule);border-radius:6px;
+  padding:14px 18px;margin:22px 0 8px;font-size:.86rem;
+}
+.legend .lg{display:flex;align-items:center;gap:7px;color:var(--ink-soft)}
+
+/* badges */
+.badge{
+  display:inline-block;font-family:"Archivo",system-ui,sans-serif;
+  font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;white-space:nowrap;text-decoration:none;line-height:1.5;
+}
+.b-old{background:var(--plot-warm-bg);color:var(--plot-warm)}
+.b-meth{background:var(--surface-2);color:var(--ink-soft)}
+.b-notion{background:var(--plot-violet-bg);color:var(--plot-violet)}
+.b-new{background:var(--plot-blue-bg);color:var(--plot-blue)}
+a.badge:hover{outline:1px solid currentColor}
+
+/* glossaire */
+.terms{display:flex;flex-direction:column;gap:0;margin:14px 0}
+.term{
+  padding:15px 0;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(150px,210px) 1fr;gap:6px 22px;align-items:start;
+}
+.term:last-child{border-bottom:0}
+.term .name{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-size:1.02rem;line-height:1.2}
+.term .name .img{color:var(--marker);font-size:.7em;margin-left:6px;vertical-align:middle;letter-spacing:.05em}
+.term .def{margin:0 0 8px;font-size:.96rem;color:var(--ink-soft)}
+.term .src{display:flex;flex-wrap:wrap;gap:5px}
+@media(max-width:560px){.term{grid-template-columns:1fr;gap:5px}}
+
+footer{padding:44px 0 70px;color:var(--ink-faint);font-size:.86rem}
+footer p{margin:0 0 8px}
+
+@page{size:A4 portrait;margin:14mm 13mm}
+@media print{
+  nav.toc{display:none}
+  body{font-size:10.5pt;background:#fff;color:#000}
+  section{page-break-inside:avoid;padding:18px 0}
+  .hubcard{box-shadow:none}
+  .term{page-break-inside:avoid}
+}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Méthode d'entraînement du club</div>
+    <h1>Le lexique <em>du club</em></h1>
+    <p class="standfirst">Tous les mots de la méthode, au même endroit — et, pour chacun, où il vit dans ton contenu, l'ancien comme le nouveau.</p>
+    <p class="byline">Référence vocabulaire · Ultimate frisbee · relie GONES, la banque Notion, les notes dépouillées et les 4 supports</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sommaire">
+  <ol>
+    <li><a href="#liens">Tous mes documents</a></li>
+    <li><a href="#comment">Comment lire</a></li>
+    <li><a href="#cadre">Le cadre &amp; la décision</a></li>
+    <li><a href="#attaque">L'attaque</a></li>
+    <li><a href="#defense">La défense</a></li>
+    <li><a href="#exercices">Les exercices</a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+<section id="liens">
+  <h2>Tous mes documents</h2>
+  <p class="lede">Le hub de tout le projet. À gauche, ce qui a servi de source ; à droite, ce qui a été produit pour la formation.</p>
+
+  <div class="hub">
+    <div class="hubcard old">
+      <h4>Mon contenu ancien — les sources</h4>
+      <p class="note">Ce sur quoi la méthode a été dépouillée.</p>
+      <ul class="linklist">
+        <li><a href="https://app.notion.com/p/2bb9cc08fab880cd80d5d5dd82d32b95">Notion — page SPORT
+          <small>Banque d'exercices · Historique Training · EPS</small></a></li>
+        <li><a href="GONES 2026.docx">GONES 2026 — document de saison
+          <small>Chronologie Sept→Juin · vocabulaire · base stratégique</small></a></li>
+        <li><a href="METHODE_KINDER.md">Méthode Kinder — extraction
+          <small>La trame, PPA, le critère de réussite, les variables, le vocabulaire</small></a></li>
+        <li><a href="LE_CUT.md">Le cut, décomposé
+          <small>Le geste de référence en 7 temps</small></a></li>
+        <li><a href="CATALOGUE_EXERCICES.md">Catalogue des exercices
+          <small>Le répertoire dépouillé des 63 pages manuscrites</small></a></li>
+        <li><a href="2025 Training.pdf">2025 Training.pdf
+          <small>Les 63 pages de séances manuscrites (Gones + ENS)</small></a></li>
+      </ul>
+    </div>
+
+    <div class="hubcard new">
+      <h4>Mon contenu nouveau — les supports</h4>
+      <p class="note">Les 4 objets de la formation.</p>
+      <ul class="linklist">
+        <li><a href="https://claude.ai/code/artifact/57b7b211-cf4d-4559-8adc-756dae9f9c3d">Fil Rouge — le support coachs
+          <small>Gardé toute l'année · contient le glossaire</small></a></li>
+        <li><a href="https://claude.ai/code/artifact/01027921-8d0a-4205-bc1f-104cc43ba683">Diaporama de l'atelier
+          <small>Projeté pendant les 3 h · 31 écrans</small></a></li>
+        <li><a href="https://claude.ai/code/artifact/a5f90dd2-2599-4a32-9017-43942b0c322c">Conducteur d'animation
+          <small>Pour toi le jour J · minutage, ce que tu dis, les pièges</small></a></li>
+        <li><a href="https://claude.ai/code/artifact/cfc383de-abe5-41b5-96c7-047aecaf4d47">Fiches à photocopier
+          <small>« Ma séance » + « Mon exercice »</small></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="comment">
+  <h2>Comment lire ce lexique</h2>
+  <p class="lede">Chaque mot porte des étiquettes qui disent où le retrouver. Un mot marqué <span class="term-img" style="color:var(--marker);font-family:'Archivo',sans-serif;font-weight:800;font-size:.85em;letter-spacing:.05em">◆ IMAGÉ</span> est un mot qui fait image — il se retient et se crie depuis le bord du terrain.</p>
+
+  <div class="legend">
+    <span class="lg"><span class="badge b-old">GONES</span> document de saison</span>
+    <span class="lg"><span class="badge b-meth">Méthode</span> tes notes dépouillées</span>
+    <span class="lg"><span class="badge b-notion">Notion</span> la banque</span>
+    <span class="lg"><span class="badge b-new">Fil rouge</span> le support coachs</span>
+    <span class="lg"><span class="badge b-new">Diapo</span> le diaporama</span>
+  </div>
+</section>
+
+<section id="cadre">
+  <h2>Le cadre &amp; la décision</h2>
+
+  <div class="terms">
+    <div class="term">
+      <div class="name">PPA</div>
+      <div>
+        <p class="def">Prise d'information → Prise de décision → Action. La grille universelle : ce qu'on décompose, ce n'est pas le geste, c'est la boucle de décision.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#theme">Fil rouge</a><span class="badge b-new">Diapo</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Appel</div>
+      <div>
+        <p class="def">Cut 1 + changement de direction + cut 2 + zone de réception. Différent d'un simple cut : c'est la séquence complète, décidée avant de partir.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Stack</div>
+      <div>
+        <p class="def">Zone de repos <em>et</em> de prise d'info. Pas une file d'attente : l'endroit où on récupère et où on lit le jeu.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Recyclage <span class="img">/ Restack</span></div>
+      <div>
+        <p class="def">Se replacer juste après l'appel. « Quand tu recycles, tu regardes le handler. » Le cut ne se termine pas à la réception, mais quand le joueur est replacé.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a><span class="badge b-new">Diapo</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Temps zéro</div>
+      <div>
+        <p class="def">L'instant de déclenchement du cut — le moment précis où le joueur part.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">La passe qui déclenche l'appel</div>
+      <div>
+        <p class="def">Le joueur ne part pas quand il veut : il part sur un signal (une passe, un clap, un « top », une couleur annoncée).</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Départ à (−1)</div>
+      <div>
+        <p class="def">Le milieu part <em>avant</em> la réception, il n'attend pas que le disque soit catché par son partenaire.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Triangle de vision <span class="img">◆</span></div>
+      <div>
+        <p class="def">Joueur / disque / zone — en voir au minimum 2 sur 3. Un critère atteignable plutôt qu'un idéal.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Fermé / Ouvert</div>
+      <div>
+        <p class="def">Les deux côtés du terrain selon la force du marquage. On veut souvent jouer côté fermé.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="attaque">
+  <h2>L'attaque</h2>
+
+  <div class="terms">
+    <div class="term">
+      <div class="name">Swing <span class="img">◆</span></div>
+      <div>
+        <p class="def">Circulation latérale du disque pour faire bouger la défense — « Et 1 ! Et 2 ! Et 3 ! »</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Contre-swing</div>
+      <div>
+        <p class="def">Le handler renvoie le disque du côté d'où il vient, pour reprendre le rythme.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Patate chaude <span class="img">◆</span></div>
+      <div>
+        <p class="def">Disque arrêté = défense qui s'organise. Le disque est une patate chaude, très chaude : ne le garde pas, swingue.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Recentrage</div>
+      <div>
+        <p class="def">Ramener le disque vers le centre du terrain, dès que c'est possible, notamment quand on est coincé le long de la ligne.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Bise à Mathilde <span class="img">◆</span></div>
+      <div>
+        <p class="def">Le soutien part vers le porteur (objectif : mettre sa défense sur les talons) puis revient proposer un swing ou attaquer l'ouvert.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Courbe qui s'épouse <span class="img">◆</span></div>
+      <div>
+        <p class="def">La trajectoire de la passe épouse la course du receveur, et évite la défense.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Grigri</div>
+      <div>
+        <p class="def">Le mouvement du cut 1 qui accroche le défenseur et le fait basculer.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Les pistons <span class="img">◆</span></div>
+      <div>
+        <p class="def">Les zones de réception du milieu contre une zone : piston gauche, piston droit, et la zone de crash. Les milieux travaillent en duo (un cut sacrifice, un cut qui exploite).</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Le cavalier <span class="img">◆</span></div>
+      <div>
+        <p class="def">Le handler change de couloir pour casser l'organisation de la zone adverse. Aussi un exercice de remontée de terrain par grand vent.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Poche du fond</div>
+      <div>
+        <p class="def">La zone de réception profonde, la plus dangereuse à défendre.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="defense">
+  <h2>La défense</h2>
+
+  <div class="terms">
+    <div class="term">
+      <div class="name">Position de crabe <span class="img">◆</span></div>
+      <div>
+        <p class="def">Défenseur sur le lanceur : bas, mobile sur ses appuis, une main toujours devant le disque.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Grand goéland <span class="img">◆</span></div>
+      <div>
+        <p class="def">Se grandir au maximum sur le lanceur, pour gagner en envergure et couvrir le disque.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Porte placard <span class="img">◆</span></div>
+      <div>
+        <p class="def">Défense orientée : son épaule au niveau de mon thorax, je ne tourne pas autour de lui.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Pied de pivot défensif</div>
+      <div>
+        <p class="def">Je me place un peu devant le joueur, sur un côté, pied avant. Ferme et bloque un côté : 50 % du terrain en moins.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Switch</div>
+      <div>
+        <p class="def">Deux défenseurs échangent leurs vis-à-vis pour couvrir le fond ou casser un jeu de handler. Contact visuel + signe de la main obligatoires.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Les chiens <span class="img">◆</span></div>
+      <div>
+        <p class="def">Le 1er rideau de la zone : 3 défenseurs à plat, qui restent en ligne et remontent ensemble à hauteur du porteur.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Le phare <span class="img">◆</span></div>
+      <div>
+        <p class="def">Le 2e rideau de la zone : il gère la zone de lumière et la zone d'ombre créées par le 1er rideau.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Disque = lumière <span class="img">◆</span></div>
+      <div>
+        <p class="def">L'image pour placer son regard en défense : on s'oriente par rapport au disque comme à une source de lumière.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#mots">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Déplacement en banane</div>
+      <div>
+        <p class="def">Le contournement du porteur par le défenseur, en courbe.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">No in / No out / No dump / No break</div>
+      <div>
+        <p class="def">Les consignes de défense collective : ce que la marque interdit à l'instant t (l'intérieur, l'extérieur, le soutien, le break).</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Pouvoir du Freeze</div>
+      <div>
+        <p class="def">Sanction du barème quand la défense perd un élément du triangle de vision (−1 pt). Force le placement du regard.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="exercices">
+  <h2>Les exercices — le répertoire</h2>
+  <p class="lede">Les noms d'exercices sont aussi du vocabulaire commun. Le répertoire complet, avec le détail de chacun, est dans le catalogue et dans le support.</p>
+
+  <div class="terms">
+    <div class="term">
+      <div class="name">La Flèche</div>
+      <div>
+        <p class="def">L'exercice pivot du club. Des plots matérialisent cut 1, cut 2 et l'appel.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#repertoire">Fil rouge</a><span class="badge b-new">Diapo</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Le Sapin · L'Arbre</div>
+      <div>
+        <p class="def">Cut sur la longueur, timing imposé (Sapin) ; le PPA en entier puis l'enchaînement (Arbre).</p>
+        <div class="src"><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#repertoire">Fil rouge</a><span class="badge b-new">Diapo</span></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Demo BOISS</div>
+      <div>
+        <p class="def">4 disques au sol pour rendre visible l'espace créé par les pivots. Le principe généralisable : quand un concept est abstrait, on le pose au sol.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#repertoire">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">La Clam</div>
+      <div>
+        <p class="def">Défense d'enclenchement sur le stack : encercler pour bloquer les premières passes, accompagner, gêner, relayer.</p>
+        <div class="src"><span class="badge b-old">GONES</span><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#repertoire">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Conti de Royan · Passe à 10 · Cavalier · Fleur · Émeraude</div>
+      <div>
+        <p class="def">Le reste du répertoire d'attaque, chacun détaillé dans le catalogue avec sa phase, ses variables et son critère de réussite.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#repertoire">Fil rouge</a></div>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="name">Master Mind · Petits Chevaux · Morpion · Iron Man · Frisbee lumière</div>
+      <div>
+        <p class="def">Les jeux — de la technique déguisée. Le contenu reste technique, la forme est un jeu de société : les adultes arrêtent de se juger.</p>
+        <div class="src"><span class="badge b-meth">Méthode</span><a class="badge b-new" href="fil-rouge-ultimate.html#repertoire">Fil rouge</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Lexique de référence des entraîneurs du club. Un mot par tous les coachs, tout le temps — sinon le joueur est perdu.</p>
+  <p>Le détail de chaque exercice vit dans le catalogue ; le vocabulaire projeté et le glossaire complet, dans le Fil Rouge. Les liens vers la banque Notion et le fichier GONES pointent vers tes documents d'origine.</p>
+</footer>

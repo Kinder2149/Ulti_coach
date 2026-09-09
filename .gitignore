@@ -1,7 +1,2 @@
-# On ne publie QUE le site (docs/) et le README.
-# Tout le reste à la racine est exclu par défaut — y compris les documents
-# nominatifs (GONES 2026, scans de séances) et les notes de travail internes.
-/*
-!/.gitignore
-!/README.md
-!/docs/
+# Dépôt passé en privé le 2026-09-09 : tout le dossier est versionné,
+# y compris les documents nominatifs et les notes de travail internes.
