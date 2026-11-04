@@ -1,5 +1,26 @@
 # Ulti_Coach — Formation entraîneurs
 
+## STATUT — fait foi pour les statuts (lu par Pilotage)
+
+```
+STATUT DU PROJET : En développement
+MISSION : 1 La formation (atelier de 3 h) — ?
+MISSION : 2a Archive de la saison dans Notion — En implémentation
+  Étape : E1 Bases Contenu et Lexique — Close — critère : Kinder valide la structure avant remplissage
+  Étape : E2 Référentiel Contenu — Close — critère : Kinder valide le découpage en phases
+  Étape : E3 Lexique — Close — critère : Kinder corrige les définitions
+  Étape : E4 Ossature des séances — Close — critère : Kinder vérifie dates et thèmes
+  Étape : E5 Contenu intégral des séances — Close — critère : Kinder relit chaque lot, scan à côté
+  Étape : E6 Exercices reliés aux phases — Close — critère : Kinder valide les rattachements
+  Étape : E7 Passe finale (trous, [?], incohérences) — Planifiée — critère : Kinder tranche la liste des points ouverts
+MISSION : 2b Support générique des coachs (Fil Rouge Ultimate) — Close
+IDÉES PARQUÉES :
+  - Erreurs classiques à capter pendant la formation
+  - Nettoyage des doublons de la banque d'exercices (environ 55 réels sur 109)
+  - Plays présents dans la banque mais absents du référentiel
+```
+*(Bloc ajouté le 2026-10-30, validé par Kinder. Mission 1 en « ? » : la formation a-t-elle eu lieu ?)*
+
 ## 1. Le besoin
 
 Kinder anime une **formation unique de 3h (un après-midi)** destinée aux
