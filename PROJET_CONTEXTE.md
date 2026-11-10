@@ -19,7 +19,7 @@ IDÉES PARQUÉES :
   - Nettoyage des doublons de la banque d'exercices (environ 55 réels sur 109)
   - Plays présents dans la banque mais absents du référentiel
 ```
-*(Bloc ajouté le 2026-10-30, validé par Kinder. Tri du 2026-11-10 : mission 2a seule active, mission 1 « En attente (1) » ; plan de la mission 2a : docs\PLAN_MISSION_2A.md.)*
+*(Bloc ajouté le 2026-10-30, validé par Kinder. Tri du 2026-11-10 : mission 2a seule active, mission 1 « En attente (1) » ; plan de la mission 2a : docsrchive\PLAN_MISSION_2A.md.)*
 
 ## 1. Le besoin
 
