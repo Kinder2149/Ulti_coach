@@ -4,7 +4,6 @@
 
 ```
 STATUT DU PROJET : En développement
-MISSION : 1 La formation (atelier de 3 h) — ?
 MISSION : 2a Archive de la saison dans Notion — En implémentation
   Étape : E1 Bases Contenu et Lexique — Close — critère : Kinder valide la structure avant remplissage
   Étape : E2 Référentiel Contenu — Close — critère : Kinder valide le découpage en phases
@@ -12,14 +11,15 @@ MISSION : 2a Archive de la saison dans Notion — En implémentation
   Étape : E4 Ossature des séances — Close — critère : Kinder vérifie dates et thèmes
   Étape : E5 Contenu intégral des séances — Close — critère : Kinder relit chaque lot, scan à côté
   Étape : E6 Exercices reliés aux phases — Close — critère : Kinder valide les rattachements
-  Étape : E7 Passe finale (trous, [?], incohérences) — Planifiée — critère : Kinder tranche la liste des points ouverts
+  Étape : E7 Passe finale (trous, [?], incohérences) — Planifiée — critère : dans Notion, la liste des points ouverts (trous, [?], incohérences) est affichée avec une décision de Kinder en face de chacun, et plus aucun « [?] » ne reste dans les pages de séances
+MISSION : 1 La formation (atelier de 3 h) — En attente (1)
 MISSION : 2b Support générique des coachs (Fil Rouge Ultimate) — Close
 IDÉES PARQUÉES :
   - Erreurs classiques à capter pendant la formation
   - Nettoyage des doublons de la banque d'exercices (environ 55 réels sur 109)
   - Plays présents dans la banque mais absents du référentiel
 ```
-*(Bloc ajouté le 2026-10-30, validé par Kinder. Mission 1 en « ? » : la formation a-t-elle eu lieu ?)*
+*(Bloc ajouté le 2026-10-30, validé par Kinder. Tri du 2026-11-10 : mission 2a seule active, mission 1 « En attente (1) » ; plan de la mission 2a : docs\PLAN_MISSION_2A.md.)*
 
 ## 1. Le besoin
 

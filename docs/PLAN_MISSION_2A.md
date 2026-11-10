@@ -229,7 +229,7 @@ Répartition : 18 Attaque · 14 Défense · 4 Transverse · 5 Cue moteur · 1 Pl
 
 ### Termes repris
 
-Déjà extraits et définis dans [METHODE_KINDER.md](METHODE_KINDER.md) §E :
+Déjà extraits et définis dans [METHODE_KINDER.md](../METHODE_KINDER.md) §E :
 PPA · Appel · Restack/Recyclage · Temps zéro · La passe qui déclenche l'appel ·
 Départ à (−1) · Fermé/Ouvert · Swing · Contre-swing · Cavalier · Patate chaude ·
 Recentrage · Bise à Mathilde · Courbe qui s'épouse · Poche du fond · Grigri ·
